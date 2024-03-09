@@ -1,13 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static BuildManager;
 
 public class BuildSelectController : MonoBehaviour
 {
     private Camera mainCamera;
+    private int _id;
+    public void SetId(int id) => _id = id;
+
     [SerializeField] private GameObject upgradePanel;
     [SerializeField] private GameObject buildPanel;
     [SerializeField] private GameObject fullUpgradePanel;
+    public static event Action<BuildType, int, int> BuiltTower;
+    public static event Action<BuildType, int, int> TowerSold;
+
+    private int _currentBuildLevel = 0;
+    private BuildType _buildType;
     private void Start()
     {
         mainCamera = Camera.main;
@@ -17,36 +27,47 @@ public class BuildSelectController : MonoBehaviour
     {
         transform.forward = mainCamera.transform.forward;
     }
-    public void DefenseTowerSellButton()
+    public void DefenseTowerBuyButton()
     {
-        Upgrade();
+        BuiltTower?.Invoke(BuildType.Barrack,_currentBuildLevel,_id);
+        _buildType = BuildType.Barrack;
+        Buy();
     }
-    public void MageTowerSellButton()
+    public void MageTowerBuyButton()
     {
-        Upgrade();
+        BuiltTower?.Invoke(BuildType.Mage, _currentBuildLevel, _id);
+        _buildType = BuildType.Mage;
+        Buy();
     }
-    public void ArcherTowerSellButton()
+    public void ArcherTowerBuyButton()
     {
-        Upgrade();
+        BuiltTower?.Invoke(BuildType.Archer, _currentBuildLevel, _id);
+        _buildType = BuildType.Archer;
+        Buy();
     }
-    public void CanonTowerSellButton()
+    public void CanonTowerBuyButton()
     {
-        Upgrade();
+        BuiltTower?.Invoke(BuildType.Canon, _currentBuildLevel, _id);
+        _buildType = BuildType.Canon;
+        Buy();
     }
     public void SellTower()
     {
+        TowerSold?.Invoke(_buildType, _currentBuildLevel - 1,_id);
         fullUpgradePanel.SetActive(false);
         upgradePanel.SetActive(false);
         buildPanel.SetActive(true);
+        _currentBuildLevel = 0;
     }
     public void FullUpgradePanel()
     {
         fullUpgradePanel.SetActive(true);
         upgradePanel.SetActive(false);
     }
-    private void Upgrade()
+    private void Buy()
     {
         upgradePanel.SetActive(true);
         buildPanel.SetActive(false);
+        _currentBuildLevel++;
     }
 }
