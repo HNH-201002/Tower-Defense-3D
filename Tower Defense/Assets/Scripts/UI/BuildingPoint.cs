@@ -1,21 +1,21 @@
-using System.Collections;
 using UnityEngine;
 
 public class BuildingPoint : MonoBehaviour
 {
     [SerializeField] private GameObject buildSelectPrefab;
-    [SerializeField] private Transform buildSelectContain; 
+    [SerializeField] private Transform buildSelectContainer;
     [SerializeField] private BuildSelectUIManager buildSelectManager;
-    [SerializeField] private int heightOffSetBuildSelectPanel = 10;
+    [SerializeField] private int heightOffsetBuildSelectPanel = 10;
+    [SerializeField] private GameObject buildingPoint;
+
     private int _id;
-    bool hasAlreadyChosen;
+    private bool hasAlreadyChosen;
+    private static Camera mainCamera;
+    private float _timeBuilding;
 
-    private static Camera mainCamera; 
-
-    void Awake()
+    private void Awake()
     {
-        if (mainCamera == null)
-            mainCamera = Camera.main;
+        mainCamera = Camera.main ?? mainCamera; // null-coalescing 
     }
 
     public void Interact()
@@ -26,17 +26,29 @@ public class BuildingPoint : MonoBehaviour
         }
         else
         {
-            GameObject buildSelectGO = Instantiate(buildSelectPrefab);
-            buildSelectGO.transform.SetParent(buildSelectContain.transform, false);
-            buildSelectGO.transform.position = transform.position + new Vector3(0,heightOffSetBuildSelectPanel, 0);
-            buildSelectGO.transform.forward = Camera.main.transform.forward;
-            buildSelectManager.Add(_id,buildSelectGO);
-            buildSelectGO.GetComponent<BuildSelectController>().SetId(_id);
+            SpawnBuildSelect();
             hasAlreadyChosen = true;
         }
+    }
+    private void SpawnBuildSelect()
+    {
+        GameObject buildSelectGO = Instantiate(buildSelectPrefab, buildSelectContainer, false);
+        Vector3 positionOffset = new Vector3(0, heightOffsetBuildSelectPanel, 0);
+        buildSelectGO.transform.position = transform.position + positionOffset;
+        buildSelectGO.transform.forward = mainCamera.transform.forward;
+
+        buildSelectManager.Add(_id, buildSelectGO);
+        BuildSelectController buildSelectComponent = buildSelectGO.GetComponent<BuildSelectController>();
+        buildSelectComponent.SetId(_id);
+        buildSelectComponent.SetBuildPoint(buildingPoint);
+        buildSelectComponent.SetTimeBuilding(_timeBuilding);
     }
     public void SetId(int id)
     {
         _id = id;
+    }
+    public void SetTimeBuilding(float time)
+    {
+        _timeBuilding = time;
     }
 }

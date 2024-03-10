@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static BuildManager;
 
@@ -8,66 +7,104 @@ public class BuildSelectController : MonoBehaviour
 {
     private Camera mainCamera;
     private int _id;
-    public void SetId(int id) => _id = id;
+    private int _currentBuildLevel = 0;
+    private BuildType _buildType;
 
     [SerializeField] private GameObject upgradePanel;
     [SerializeField] private GameObject buildPanel;
     [SerializeField] private GameObject fullUpgradePanel;
-    public static event Action<BuildType, int, int> BuiltTower;
-    public static event Action<BuildType, int, int> TowerSold;
+    [SerializeField] private GameObject buildPoint;
 
-    private int _currentBuildLevel = 0;
-    private BuildType _buildType;
+    private float _timeBuilding;
+    public void SetTimeBuilding(float time) => _timeBuilding = time;
+    public void SetBuildPoint(GameObject buildPoint) => this.buildPoint = buildPoint; 
+
+    public static event Action<BuildType, int, int> OnBuiltTower;
+    public static event Action<BuildType, int, int> OnTowerSold;
+
+    public void SetId(int id) => _id = id;
     private void Start()
     {
         mainCamera = Camera.main;
-        upgradePanel.SetActive(false);
+        TogglePanels(false, true, false);
     }
-    void Update()
+
+    private void Update()
     {
-        transform.forward = mainCamera.transform.forward;
+        AlignWithCamera();
     }
-    public void DefenseTowerBuyButton()
+    // Button event
+    public void BuyDefenseTower() 
     {
-        BuiltTower?.Invoke(BuildType.Barrack,_currentBuildLevel,_id);
-        _buildType = BuildType.Barrack;
-        Buy();
+        BuyTower(BuildType.Barrack);
+        StartCoroutine(DelayBuildForContruction(BuildType.Barrack));
     }
-    public void MageTowerBuyButton()
+    public void BuyMageTower()
     {
-        BuiltTower?.Invoke(BuildType.Mage, _currentBuildLevel, _id);
-        _buildType = BuildType.Mage;
-        Buy();
+        BuyTower(BuildType.Mage);
+        StartCoroutine(DelayBuildForContruction(BuildType.Mage));
     }
-    public void ArcherTowerBuyButton()
+
+    public void BuyArcherTower()
     {
-        BuiltTower?.Invoke(BuildType.Archer, _currentBuildLevel, _id);
-        _buildType = BuildType.Archer;
-        Buy();
+        BuyTower(BuildType.Archer);
+        StartCoroutine(DelayBuildForContruction(BuildType.Archer));
     }
-    public void CanonTowerBuyButton()
+
+    public void BuyCanonTower()
     {
-        BuiltTower?.Invoke(BuildType.Canon, _currentBuildLevel, _id);
-        _buildType = BuildType.Canon;
-        Buy();
+        BuyTower(BuildType.Canon);
+        StartCoroutine(DelayBuildForContruction(BuildType.Canon));
+    }
+    private void BuyTower(BuildType buildType)
+    {
+        OnBuiltTower?.Invoke(buildType, _currentBuildLevel, _id);
+        _buildType = buildType;
+        TogglePanels(true, false, false);
+        _currentBuildLevel++;
+        ToggleBuildPoint(false);
+        
+    }
+    IEnumerator DelayBuildForContruction(BuildType buildType)
+    {
+        yield return new WaitForSeconds(_timeBuilding);
+        BuyTower(buildType);
     }
     public void SellTower()
     {
-        TowerSold?.Invoke(_buildType, _currentBuildLevel - 1,_id);
-        fullUpgradePanel.SetActive(false);
-        upgradePanel.SetActive(false);
-        buildPanel.SetActive(true);
+        OnTowerSold?.Invoke(_buildType, _currentBuildLevel - 1, _id);
+        ResetTower();
+    }
+
+    public void ShowFullUpgradePanel()
+    {
+        TogglePanels(false, false, true);
+    }
+
+    private void TogglePanels(bool upgrade, bool build, bool fullUpgrade)
+    {
+        upgradePanel.SetActive(upgrade);
+        buildPanel.SetActive(build);
+        fullUpgradePanel.SetActive(fullUpgrade);
+    }
+
+    private void ResetTower()
+    {
+        TogglePanels(false, true, false);
         _currentBuildLevel = 0;
+        ToggleBuildPoint(true);
     }
-    public void FullUpgradePanel()
+
+    private void ToggleBuildPoint(bool state)
     {
-        fullUpgradePanel.SetActive(true);
-        upgradePanel.SetActive(false);
+        buildPoint.SetActive(state);
     }
-    private void Buy()
+
+    private void AlignWithCamera()
     {
-        upgradePanel.SetActive(true);
-        buildPanel.SetActive(false);
-        _currentBuildLevel++;
+        if (mainCamera != null)
+        {
+            transform.forward = mainCamera.transform.forward;
+        }
     }
 }
