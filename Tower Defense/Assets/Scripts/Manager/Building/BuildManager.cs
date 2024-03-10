@@ -49,10 +49,10 @@ public class BuildManager : MonoBehaviour
 
         foreach (BuildType type in Enum.GetValues(typeof(BuildType)))
         {
-            objectPools[type] = new Queue<GameObject>[buildingPoints.Length];
+            objectPools[type] = new Queue<GameObject>[canonPrefabs.Length];
             currentBuildings[type] = new Dictionary<int, GameObject[]>();
 
-            for (int i = 0; i < buildingPoints.Length; i++)
+            for (int i = 0; i < canonPrefabs.Length; i++)
             {
                 objectPools[type][i] = new Queue<GameObject>();
                 currentBuildings[type][i] = new GameObject[prefabLookup[type].Length];
@@ -86,7 +86,14 @@ public class BuildManager : MonoBehaviour
 
     private void DeableContructionTower(BuildType buildType, int level, int pointId)
     {
-        if (level % 2 != 0)
+        if (level % 2 == 0) //even
+        {
+            if (level > 1)
+            {
+                AddTowerToPool(buildType, level - 1, pointId);
+            }
+        }
+        else
         {
             AddTowerToPool(buildType, level - 1, pointId);
         }

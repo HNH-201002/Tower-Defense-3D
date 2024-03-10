@@ -1470,7 +1470,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8581118815297872190}
         m_TargetAssemblyTypeName: BuildSelectController, Assembly-CSharp
-        m_MethodName: ShowFullUpgradePanel
+        m_MethodName: Upgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -60,10 +60,9 @@ public class BuildSelectController : MonoBehaviour
     {
         OnBuiltTower?.Invoke(buildType, _currentBuildLevel, _id);
         _buildType = buildType;
-        TogglePanels(true, false, false);
         _currentBuildLevel++;
+        TogglePanels(true, false, false);
         ToggleBuildPoint(false);
-        
     }
     IEnumerator DelayBuildForContruction(BuildType buildType)
     {
@@ -75,7 +74,16 @@ public class BuildSelectController : MonoBehaviour
         OnTowerSold?.Invoke(_buildType, _currentBuildLevel - 1, _id);
         ResetTower();
     }
-
+    public void Upgrade()
+    {
+        if (_currentBuildLevel >= 10) 
+        {
+            ShowFullUpgradePanel();
+            return;
+        }
+        BuyTower(_buildType);
+        StartCoroutine(DelayBuildForContruction(_buildType));
+    }
     public void ShowFullUpgradePanel()
     {
         TogglePanels(false, false, true);
