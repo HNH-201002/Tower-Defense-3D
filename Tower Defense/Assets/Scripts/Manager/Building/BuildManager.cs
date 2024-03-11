@@ -13,6 +13,8 @@ public class BuildManager : MonoBehaviour
         Barrack
     }
     [SerializeField] private float timeBuilding;
+    public float GetTimeBuilding() => timeBuilding;
+
     [SerializeField] private GameObject[] canonPrefabs;
     [SerializeField] private GameObject[] archerPrefabs;
     [SerializeField] private GameObject[] magePrefabs;
@@ -71,6 +73,7 @@ public class BuildManager : MonoBehaviour
 
     public void Build(BuildType buildType, int level, int pointId)
     {
+        if (prefabLookup[buildType].Length < level) return;
         var prefab = prefabLookup[buildType][level];
         var buildingPoint = buildingPoints[pointId].transform;
 

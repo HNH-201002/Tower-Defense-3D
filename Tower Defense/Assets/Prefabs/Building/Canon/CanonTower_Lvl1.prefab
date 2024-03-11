@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 3950081540113790382}
   - component: {fileID: 907595382953933343}
   - component: {fileID: 737014077466574986}
+  - component: {fileID: 8221633411383989865}
   m_Layer: 0
   m_Name: CanonTower_Lvl1
   m_TagString: Untagged
@@ -171,3 +172,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8221633411383989865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7026358836872514127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d2c80699980ab4b8a543d2e388021b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerData: {fileID: 11400000, guid: 80aeb46bab70fdd4b892875e1fb59aea, type: 2}

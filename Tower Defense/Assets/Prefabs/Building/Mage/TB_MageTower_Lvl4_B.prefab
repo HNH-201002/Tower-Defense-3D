@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7164801796674003995}
   - component: {fileID: 2875164709812229442}
   - component: {fileID: 8001801085938081591}
+  - component: {fileID: 8931920607476500725}
   m_Layer: 0
   m_Name: TB_MageTower_Lvl4_B
   m_TagString: Untagged
@@ -86,6 +87,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8931920607476500725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724489090006621291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e851234655e9f44eb3e79c9ac0b9591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerData: {fileID: 11400000, guid: 0c1dbab92ed94fd4caf87329c7d3a89e, type: 2}
 --- !u!1 &2936431999835647943
 GameObject:
   m_ObjectHideFlags: 0

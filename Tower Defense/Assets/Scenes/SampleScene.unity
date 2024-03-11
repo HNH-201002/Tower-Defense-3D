@@ -7758,6 +7758,11 @@ PrefabInstance:
       propertyPath: buildSelectContainer
       value: 
       objectReference: {fileID: 630219322}
+    - target: {fileID: 8109633819469003850, guid: 48b3b216e3411144186e69ea434bc255,
+        type: 3}
+      propertyPath: heightOffsetBuildSelectPanel
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8360071242828959803, guid: 48b3b216e3411144186e69ea434bc255,
         type: 3}
       propertyPath: buildSelectContainer

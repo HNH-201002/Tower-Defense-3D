@@ -71,7 +71,7 @@ MonoBehaviour:
     type: 3}
   buildSelectContainer: {fileID: 0}
   buildSelectManager: {fileID: 0}
-  heightOffsetBuildSelectPanel: 15
+  heightOffsetBuildSelectPanel: 20
   buildingPoint: {fileID: 0}
 --- !u!1 &1887877848877801044
 GameObject:

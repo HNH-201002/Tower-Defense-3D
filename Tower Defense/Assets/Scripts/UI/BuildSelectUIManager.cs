@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,11 @@ public class BuildSelectUIManager : MonoBehaviour
 {
     private Dictionary<int,GameObject> buildSelectGOs = new Dictionary<int, GameObject>();
     private int _currentBuildSelectId = 0;
+    private float _timeBuilding;
+    private void Awake()
+    {
+        _timeBuilding = GetComponent<BuildManager>().GetTimeBuilding();
+    }
     public void Add(int id,GameObject buildSelectGO)
     {
         HandleOldAndNewPanel(id);
@@ -17,7 +23,15 @@ public class BuildSelectUIManager : MonoBehaviour
         {
             if (buildSelectGOs.TryGetValue(_currentBuildSelectId, out var oldGO))
             {
-                oldGO.SetActive(false);
+                BuildSelectController oldGoComponent = oldGO.GetComponent<BuildSelectController>();
+                if (oldGoComponent.IsProcessing())
+                {
+                    StartCoroutine(DelayForConstructor(oldGO));
+                }
+                else
+                {
+                    oldGO.SetActive(false);
+                }
             }
         }
         if (buildSelectGOs.TryGetValue(newId, out var newGO))
@@ -30,8 +44,21 @@ public class BuildSelectUIManager : MonoBehaviour
     {
         if (_currentBuildSelectId != -1 && buildSelectGOs.TryGetValue(_currentBuildSelectId, out var currentGO))
         {
-            currentGO.SetActive(false);
+            BuildSelectController currentGoComponent = currentGO.GetComponent<BuildSelectController>();
+            if (currentGoComponent.IsProcessing())
+            {
+                StartCoroutine(DelayForConstructor(currentGO));
+            }
+            else
+            {
+                currentGO.SetActive(false);
+            }
         }
+    }
+    IEnumerator DelayForConstructor(GameObject currentGO)
+    {
+        yield return new WaitForSeconds(_timeBuilding);
+        currentGO.SetActive(false);
     }
     private void OnEnable()
     {

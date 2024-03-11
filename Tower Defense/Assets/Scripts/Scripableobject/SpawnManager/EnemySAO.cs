@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="Prefab Enemy" ,menuName ="Create New Data Prefab/Enemy",order = 1)]
+[CreateAssetMenu(fileName ="Prefab Enemy" ,menuName ="Create New Data Prefab/Enemy",order = 0)]
 public class EnemySAO : ScriptableObject
 {
     public enum TypeEnemy

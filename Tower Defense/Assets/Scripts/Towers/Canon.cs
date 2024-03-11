@@ -1,0 +1,5 @@
+
+public class Canon : Ranged
+{
+
+}

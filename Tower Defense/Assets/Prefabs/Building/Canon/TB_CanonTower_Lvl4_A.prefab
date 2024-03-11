@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 3238488838754780136}
   - component: {fileID: 8203718506848404994}
   - component: {fileID: 7695016933255265043}
+  - component: {fileID: 2278175239705339432}
   m_Layer: 0
   m_Name: TB_CanonTower_Lvl4_A
   m_TagString: Untagged
@@ -171,3 +172,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2278175239705339432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7676962024281799689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d2c80699980ab4b8a543d2e388021b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerData: {fileID: 11400000, guid: 9e5e4b2d26478c2449ec7f7615c63250, type: 2}

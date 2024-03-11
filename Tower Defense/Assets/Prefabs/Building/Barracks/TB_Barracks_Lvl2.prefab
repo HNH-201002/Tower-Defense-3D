@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 8708953948793609812}
   - component: {fileID: 6080189096268210092}
   - component: {fileID: 5321320985338339567}
+  - component: {fileID: 5103940019816372951}
   m_Layer: 0
   m_Name: TB_Barracks_Lvl2
   m_TagString: Untagged
@@ -257,3 +258,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5103940019816372951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8528182837156072680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4af4b1e57633fd4581cfa3756136584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerData: {fileID: 11400000, guid: aea55d92b121861418028689ed4e4bf0, type: 2}
