@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 8257940449232421254}
   - component: {fileID: 8015817950292890033}
   - component: {fileID: 7320797885705770983}
-  - component: {fileID: 1894625364505649991}
+  - component: {fileID: 1679660483768855100}
   m_Layer: 0
   m_Name: MageTower_Lvl1
   m_TagString: Untagged
@@ -173,7 +173,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1894625364505649991
+--- !u!114 &1679660483768855100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,11 +189,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 64
-  shootOrigins:
-  - {fileID: 6123242275606148270}
-  projectilePrefab: {fileID: 8081763228549396314, guid: 50ca5c0583926424ea68dd8d3c6cd7a5,
+  shootOrigins: {fileID: 6123242275606148270}
+  projectilePrefab: {fileID: 149406441206662954, guid: 033d16d05d46e0f4cb823b9cb88e7fc8,
     type: 3}
-  projectileSpeed: 22.5
 --- !u!1 &9030401101960706294
 GameObject:
   m_ObjectHideFlags: 0

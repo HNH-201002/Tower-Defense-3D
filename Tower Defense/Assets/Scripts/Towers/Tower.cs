@@ -1,34 +1,63 @@
+using System.Collections;
 using UnityEngine;
 
 public abstract class Tower : MonoBehaviour
 {
     [SerializeField] private TowerSAO towerData;
-    [SerializeField] private LayerMask mask;
+    protected LayerMask _mask;
     protected float _attackSpeed;
     protected float _range;
     protected float _damage;
     protected int _enemiesPerAttack;
     protected float _projectileSpeed;
-    Collider[] enemiesPerAttack;
-    private void Awake()
+    private Coroutine attackRoutine;
+
+    protected void Awake()
     {
         _attackSpeed = towerData.AttackSpeed;
         _range = towerData.Range;
         _damage = towerData.Damage;
         _enemiesPerAttack = towerData.EnemiesPerAttack;
         _projectileSpeed = towerData.ProjectileSpeed;
-        enemiesPerAttack = new Collider[_enemiesPerAttack];
+        _mask = towerData.Mask;
     }
-    private void Update()
-    {
-        Detect();
-    }
-    protected abstract void Attack();
 
-    protected virtual Collider[] Detect()
+    protected void Start()
     {
-        int enemyDetected = Physics.OverlapSphereNonAlloc(transform.position,_range,enemiesPerAttack,mask);
-        if (enemyDetected > 0) Attack();
-        return enemiesPerAttack;
+        attackRoutine = StartCoroutine(AttackRoutine());
+    }
+
+    private IEnumerator AttackRoutine()
+    {
+        while (true)
+        {
+            Detect();
+            yield return new WaitForSeconds(_attackSpeed);
+        }
+    }
+
+    protected abstract void Attack(Collider[] enemies);
+
+    protected virtual void Detect()
+    {
+        Collider[] enemies = new Collider[_enemiesPerAttack];
+        int enemiesDetected = Physics.OverlapSphereNonAlloc(transform.position, _range, enemies,_mask);
+
+        if (enemiesDetected > 0)
+        {
+            Attack(enemies);
+        }
+    }
+    private void OnDisable()
+    {
+        if (attackRoutine != null)
+        {
+            StopCoroutine(attackRoutine);
+        }
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _range);
     }
 }

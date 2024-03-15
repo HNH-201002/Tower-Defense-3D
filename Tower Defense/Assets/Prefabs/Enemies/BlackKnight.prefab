@@ -877,7 +877,7 @@ GameObject:
   - component: {fileID: 7849583591230092923}
   m_Layer: 6
   m_Name: BlackKnight
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -955,6 +955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: f1bf5e96e2c615c43a17eabcce44ce10, type: 2}
+  EnemyWaveSpawnManager: {fileID: 0}
 --- !u!54 &7849583591230092923
 Rigidbody:
   m_ObjectHideFlags: 0

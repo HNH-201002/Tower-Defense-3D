@@ -1002,7 +1002,7 @@ GameObject:
   - component: {fileID: 952788131115392816}
   m_Layer: 6
   m_Name: FlyingDemon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1080,6 +1080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 82422de1c55d80e409cdfe01c8f8a32f, type: 2}
+  EnemyWaveSpawnManager: {fileID: 0}
 --- !u!54 &952788131115392816
 Rigidbody:
   m_ObjectHideFlags: 0

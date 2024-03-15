@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Summon : Tower
 {
-    protected override void Attack()
+    protected override void Attack(Collider[] enemiesPerAttack)
     {
         
     }

@@ -1808,7 +1808,7 @@ GameObject:
   - component: {fileID: 6681514781370257216}
   m_Layer: 6
   m_Name: WerewolfDefault
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1913,6 +1913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 55d02551eb4d1ed44b90d45517d498fb, type: 2}
+  EnemyWaveSpawnManager: {fileID: 0}
 --- !u!1 &7333819353296262712
 GameObject:
   m_ObjectHideFlags: 0

@@ -2266,7 +2266,7 @@ GameObject:
   - component: {fileID: 5209634078012392671}
   m_Layer: 6
   m_Name: LizardWarrior
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2371,6 +2371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 04873e15cb5f4ce4dbd38a341bd16d78, type: 2}
+  EnemyWaveSpawnManager: {fileID: 0}
 --- !u!1 &8540395408508810193
 GameObject:
   m_ObjectHideFlags: 0

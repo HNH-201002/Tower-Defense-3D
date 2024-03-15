@@ -16,3 +16,7 @@ MonoBehaviour:
   attackSpeed: 0
   range: 0
   enemiesPerAttack: 0
+  projectileSpeed: 0
+  maskDetect:
+    serializedVersion: 2
+    m_Bits: 64
