@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
@@ -27,17 +27,13 @@ public abstract class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         _NextPointToMove = _pointToMove.Dequeue();
     }
-    private void Update()
-    {
-        Walk();
-    }
-    protected abstract void Attack();
+    public abstract void Attack();
 
     protected virtual void Hurt(float damage)
     {
         health -= damage;
     }
-    protected virtual void Walk()
+    public virtual void Walk()
     {
         if (_pointToMove == null || _pointToMove.Count < 0) return;
 
@@ -61,14 +57,17 @@ public abstract class Enemy : MonoBehaviour
 
     private void SetNextPoint(Transform point)
     {
-        Vector3 directionToPoint = point.transform.position - transform.position;
-        if (directionToPoint.magnitude <= 0.0001f) return;
-        _NextPointToMove = point;
-        Quaternion rotation = Quaternion.LookRotation(point.transform.position - transform.position);
+        Vector3 directionToPoint = point.position - transform.position;
+        directionToPoint.y = 0;
 
-        Quaternion current = transform.localRotation;
+        if (directionToPoint.sqrMagnitude <= 0.0001f) return;
 
-        transform.localRotation = Quaternion.Lerp(current, rotation,7 * Time.deltaTime);
+        Quaternion targetRotation = Quaternion.LookRotation(directionToPoint.normalized, Vector3.up);
+
+        if (Quaternion.Angle(transform.rotation, targetRotation) > 0.5f)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+        }
     }
     public void SetPatrol(List<Transform> patrolPoints) => _pointToMove = new Queue<Transform>(patrolPoints);
 
@@ -76,7 +75,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if (collision.collider.CompareTag("End"))
         {
-            EnemyWaveSpawnManager.DeactivateAndAddToPool(_typeEnemy,this.gameObject);
+            EnemyWaveSpawnManager.DeactivateAndAddToPool(_typeEnemy,gameObject);
         }
     }
 }

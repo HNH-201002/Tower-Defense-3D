@@ -204,6 +204,7 @@ Transform:
   m_Children:
   - {fileID: 6377000251332631383}
   - {fileID: 5341680583290273524}
+  - {fileID: 2335652550006094936}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5349023091365329233
@@ -271,3 +272,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerData: {fileID: 11400000, guid: 6355cafbf21e5da47a8bd01bf11e3e97, type: 2}
+  origin: {fileID: 2335652550006094936}
+  soldierPrefab: {fileID: 2920231193782813352, guid: 73cb8d33ef0218d4f9caada75aedbf0d,
+    type: 3}
+  amountOfSoldier: 3
+--- !u!1 &8817161351545379257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2335652550006094936}
+  m_Layer: 0
+  m_Name: Origin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2335652550006094936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817161351545379257}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -8.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4257691172167800317}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

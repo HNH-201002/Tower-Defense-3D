@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Summon : Tower
+public class Summon 
 {
-    protected override void Attack(Collider[] enemiesPerAttack)
-    {
-        
-    }
+   
 }

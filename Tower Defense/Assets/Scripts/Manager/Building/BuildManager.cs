@@ -29,7 +29,7 @@ public class BuildManager : MonoBehaviour
     private void Awake()
     {
         InitializePrefabLookup();
-        InitializePools();
+        Initialize();
         InitializeBuildingPoints();
     }
 
@@ -44,7 +44,7 @@ public class BuildManager : MonoBehaviour
         };
     }
 
-    private void InitializePools()
+    private void Initialize()
     {
         objectPools = new Dictionary<BuildType, Queue<GameObject>[]>();
         currentBuildings = new Dictionary<BuildType, Dictionary<int, GameObject[]>>();

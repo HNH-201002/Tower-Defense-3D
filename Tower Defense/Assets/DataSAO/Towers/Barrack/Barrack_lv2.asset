@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbbf60a1de74e249a1df6d09f8e35f7, type: 3}
   m_Name: Barrack_lv2
   m_EditorClassIdentifier: 
-  damage: 0
-  attackSpeed: 0
-  range: 0
-  enemiesPerAttack: 0
-  projectileSpeed: 0
+  damage: 10
+  attackSpeed: 0.5
+  range: 20
+  enemiesPerAttack: 4
+  projectileSpeed: 63.1
   maskDetect:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64

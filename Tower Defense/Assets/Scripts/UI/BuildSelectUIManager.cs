@@ -26,17 +26,18 @@ public class BuildSelectUIManager : MonoBehaviour
                 BuildSelectController oldGoComponent = oldGO.GetComponent<BuildSelectController>();
                 if (oldGoComponent.IsProcessing())
                 {
-                    StartCoroutine(DelayForConstructor(oldGO));
+                    StartCoroutine(DelayForConstructor(oldGoComponent));
                 }
                 else
                 {
-                    oldGO.SetActive(false);
+                    oldGoComponent.parentUI.SetActive(false);
                 }
             }
         }
         if (buildSelectGOs.TryGetValue(newId, out var newGO))
         {
-            newGO.SetActive(true);
+            BuildSelectController newGoComponent = newGO.GetComponent<BuildSelectController>();
+            newGoComponent.parentUI.SetActive(true);
             _currentBuildSelectId = newId;
         }
     }
@@ -47,18 +48,18 @@ public class BuildSelectUIManager : MonoBehaviour
             BuildSelectController currentGoComponent = currentGO.GetComponent<BuildSelectController>();
             if (currentGoComponent.IsProcessing())
             {
-                StartCoroutine(DelayForConstructor(currentGO));
+                StartCoroutine(DelayForConstructor(currentGoComponent));
             }
             else
             {
-                currentGO.SetActive(false);
+                currentGoComponent.parentUI.SetActive(false);
             }
         }
     }
-    IEnumerator DelayForConstructor(GameObject currentGO)
+    IEnumerator DelayForConstructor(BuildSelectController currentGoComponent)
     {
         yield return new WaitForSeconds(_timeBuilding);
-        currentGO.SetActive(false);
+        currentGoComponent.parentUI.SetActive(false);
     }
     private void OnEnable()
     {

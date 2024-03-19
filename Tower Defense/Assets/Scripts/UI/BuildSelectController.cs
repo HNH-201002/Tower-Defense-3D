@@ -12,12 +12,14 @@ public class BuildSelectController : MonoBehaviour
     private BuildType _buildType;
     private Quaternion lastCameraRotation;
 
+    [Tooltip("Using for turn off all of UI")]
+    public GameObject parentUI; 
     [SerializeField] private GameObject upgradePanel;
     [SerializeField] private GameObject buildPanel;
     [SerializeField] private GameObject fullUpgradePanel;
     [SerializeField] private Slider timeToBuildSilder;
 
-    [SerializeField] private GameObject buildPoint;
+    private GameObject buildPoint;
 
 
     private float _timeBuilding;
@@ -75,12 +77,8 @@ public class BuildSelectController : MonoBehaviour
     }
     private void BuyTower(BuildType buildType)
     {
+
         OnBuiltTower?.Invoke(buildType, _currentBuildLevel, _id);
-        if (_currentBuildLevel >= 9)
-        {
-            ShowFullUpgradePanel();
-            return;
-        }
         if (_currentBuildLevel % 2 == 0)
         {
             TogglePanels(false, false, false);
@@ -90,6 +88,10 @@ public class BuildSelectController : MonoBehaviour
             TogglePanels(true, false, false);
         }
         _currentBuildLevel++;
+        if (_currentBuildLevel > 9)
+        {
+            ShowFullUpgradePanel();
+        }
     }
     private IEnumerator BuildTimer()
     {
@@ -108,6 +110,8 @@ public class BuildSelectController : MonoBehaviour
         BuyTower(_buildType);
         _isProcessing = false;
     }
+
+
     public void SellTower()
     {
         OnTowerSold?.Invoke(_buildType, _currentBuildLevel - 1, _id); //store in Pooling

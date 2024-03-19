@@ -59,6 +59,8 @@ public class EnemyWaveSpawnManager : MonoBehaviour
                 }
                 Enemy enemyScript = enemyGO.GetComponent<Enemy>();
                 enemyScript.EnemyWaveSpawnManager = this;
+                EnemyHealth enemyHealth = enemyGO.GetComponent<EnemyHealth>();  //singleton
+                enemyHealth.EnemyWaveSpawnManager = this;
                 enemyScript.SetPatrol(enemyInfo.movePoints.PatrolPoints());
                 yield return new WaitForSeconds(_delayBetweenEnemies);
             }

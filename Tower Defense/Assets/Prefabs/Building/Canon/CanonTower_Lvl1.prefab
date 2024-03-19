@@ -217,10 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerData: {fileID: 11400000, guid: 80aeb46bab70fdd4b892875e1fb59aea, type: 2}
-  mask:
-    serializedVersion: 2
-    m_Bits: 64
   shootOrigins: {fileID: 8752712686316750401}
-  projectilePrefab: {fileID: 2020877460318480862, guid: c61550ae59d86dd41ab216429a87469b,
+  projectilePrefab: {fileID: 892872549914555247, guid: ecfe55061724417499471b7fc47533b3,
     type: 3}
   LaunchAngle: 35

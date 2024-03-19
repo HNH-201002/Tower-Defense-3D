@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Range : Enemy
 {
-    protected override void Attack()
+    public override void Attack()
     {
         
     }

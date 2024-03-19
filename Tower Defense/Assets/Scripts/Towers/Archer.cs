@@ -29,16 +29,13 @@ public class Archer : Ranged, IFire
     public void UpdateFiring(Transform projectile, Transform target)
     {
         projectile.position = Vector3.MoveTowards(projectile.position, target.position, _projectileSpeed * Time.deltaTime);
-        // Calculate the direction based on the last two positions
         Vector3 arrowDirection = lastPosition - lastLastPosition;
 
-        // Check if the arrow has moved to prevent setting the forward vector to zero
         if (arrowDirection != Vector3.zero)
         {
             projectile.up = -arrowDirection.normalized;
         }
 
-        // Update the last positions for the next frame
         lastLastPosition = lastPosition;
         lastPosition = projectile.position;
         if (characterPrefab.Length > 1)
@@ -54,7 +51,7 @@ public class Archer : Ranged, IFire
     private void RotateTowardsTarget(Transform character, Vector3 targetPosition)
     {
         Vector3 directionToTarget = -(targetPosition - character.position).normalized;
-        directionToTarget.y = 0; // Remove Y component to keep rotation on XZ plane
+        directionToTarget.y = 0; 
         Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
         character.rotation = Quaternion.Slerp(character.rotation, targetRotation, turnSpeed * Time.deltaTime);
     }

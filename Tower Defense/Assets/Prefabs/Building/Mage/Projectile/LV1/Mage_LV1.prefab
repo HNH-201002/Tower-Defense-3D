@@ -5058,6 +5058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashPrefab: {fileID: 570239196936694181}
   hitPrefab: {fileID: 3145562594134980527}
+  projectileModelPrefab: {fileID: 149406441206662954}
 --- !u!1 &431922442277116484
 GameObject:
   m_ObjectHideFlags: 0

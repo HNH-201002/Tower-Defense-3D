@@ -1,4 +1,5 @@
-using System.Collections;
+﻿using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Tower : MonoBehaviour
@@ -11,7 +12,7 @@ public abstract class Tower : MonoBehaviour
     protected int _enemiesPerAttack;
     protected float _projectileSpeed;
     private Coroutine attackRoutine;
-
+    protected Animator ani;
     protected void Awake()
     {
         _attackSpeed = towerData.AttackSpeed;
@@ -20,8 +21,8 @@ public abstract class Tower : MonoBehaviour
         _enemiesPerAttack = towerData.EnemiesPerAttack;
         _projectileSpeed = towerData.ProjectileSpeed;
         _mask = towerData.Mask;
+        ani = GetComponent<Animator>();
     }
-
     protected void Start()
     {
         attackRoutine = StartCoroutine(AttackRoutine());
@@ -41,19 +42,22 @@ public abstract class Tower : MonoBehaviour
     protected virtual void Detect()
     {
         Collider[] enemies = new Collider[_enemiesPerAttack];
-        int enemiesDetected = Physics.OverlapSphereNonAlloc(transform.position, _range, enemies,_mask);
-
+        int enemiesDetected = Physics.OverlapSphereNonAlloc(transform.position, _range, enemies, _mask);
         if (enemiesDetected > 0)
         {
             Attack(enemies);
         }
     }
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         if (attackRoutine != null)
         {
             StopCoroutine(attackRoutine);
         }
+    }
+    protected virtual void OnEnable()
+    {
+        attackRoutine = StartCoroutine(AttackRoutine());
     }
     void OnDrawGizmos()
     {

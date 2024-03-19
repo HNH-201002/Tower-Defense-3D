@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a88288822c7434f9434348f1d9f588, type: 3}
+  m_Name: FlyingDemon
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 3463715155849394432, guid: 7c75fd04b01d540499ee155ec4eaa1ba, type: 3}
+  _health: 40
+  _speed: 5
+  _damage: 10
+  _attackSpeed: 0
+  _attackRange: 10
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _enemyType: 1

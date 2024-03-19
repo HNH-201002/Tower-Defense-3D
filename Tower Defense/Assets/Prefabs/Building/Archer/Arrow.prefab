@@ -47,9 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780e5eae30423144699d3e80e66247f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashPrefab: {fileID: 4514730505716394, guid: b5228327566dd7b42950677605733d7f,
+  flashPrefab: {fileID: 2093500058623263898, guid: d3b01e87ad449c84b93e1b801b7d60e8,
     type: 3}
-  hitPrefab: {fileID: 4744743575995962, guid: cf870bd1ddb489a49806f50c4c73a281, type: 3}
+  hitPrefab: {fileID: 4167045639616544578, guid: 7565b4204a89feb4ba2ad7c209497071,
+    type: 3}
+  projectileModelPrefab: {fileID: 4328077369147868072}
 --- !u!54 &4586216242298576694
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -166,6 +168,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e2eb2dc98be66d40b360fe92e9e3346, type: 3}
+--- !u!1 &4328077369147868072 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4294136278661936577, guid: 5e2eb2dc98be66d40b360fe92e9e3346,
+    type: 3}
+  m_PrefabInstance: {fileID: 542610491926935145}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7833996117421392103 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7723757647258023566, guid: 5e2eb2dc98be66d40b360fe92e9e3346,

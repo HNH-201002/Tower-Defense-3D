@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ranged : Tower 
+public class Ranged : Tower
 {
     [SerializeField] private Transform shootOrigins;
     [SerializeField] private GameObject projectilePrefab;
     private Queue<GameObject> poolProjectile = new Queue<GameObject>();
-    private Queue<GameObject> poolFlash = new Queue<GameObject>();
     private bool isReadyToAttack = true;
     IFire fire;
     private void Awake()
@@ -21,7 +20,6 @@ public class Ranged : Tower
     }
     protected override void Attack(Collider[] enemiesPerAttack)
     {
-
         if (isReadyToAttack)
         {
             StartCoroutine(DelayPerShoot(enemiesPerAttack));
@@ -53,7 +51,7 @@ public class Ranged : Tower
             }
 
             Projectile projectileScript = projectileGameObject.GetComponent<Projectile>();
-            projectileScript.Initialize(enemiesPerAttack[0].transform, fire);
+            projectileScript.Initialize(enemiesPerAttack[0].transform, fire,_damage); //magic number
             projectileScript.SetRanged(this);
         }
     }
@@ -66,5 +64,10 @@ public class Ranged : Tower
     {
         projectile.SetActive(false);
         poolProjectile.Enqueue(projectile);
+    }
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        isReadyToAttack = true;
     }
 }

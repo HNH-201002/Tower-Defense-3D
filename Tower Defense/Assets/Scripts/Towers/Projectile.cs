@@ -6,10 +6,13 @@ public class Projectile : MonoBehaviour
     private Ranged _ranged;
     private Transform target;
     private IFire _fire;
+    private float _damage;
     [SerializeField] private Transform flashPrefab;
     [SerializeField] private Transform hitPrefab;
-    public void Initialize(Transform target,IFire fire)
+    [SerializeField] private GameObject projectileModelPrefab;
+    public void Initialize(Transform target,IFire fire,float damage)
     {
+        _damage = damage;
         this.target = target;
         _fire = fire;
         if(flashPrefab != null) flashPrefab.gameObject.SetActive(true);
@@ -49,15 +52,20 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Enemy") || other.CompareTag("Ground"))
         {
-
+            if (other.GetComponent<EnemyHealth>())
+            {
+                other.GetComponent<EnemyHealth>().TakeDamage(_damage);
+            }
             if (hitPrefab != null) hitPrefab.gameObject.SetActive(true);
             StartCoroutine(DelayBeforeDisapper(hitPrefab.gameObject));
         }
     }
     IEnumerator DelayBeforeDisapper(GameObject objectToHandle)
     {
-        yield return new WaitForSeconds(0.5f);
+        projectileModelPrefab.SetActive(false);
+        yield return new WaitForSeconds(1f);
         objectToHandle.SetActive(false);
+        projectileModelPrefab.SetActive(true);
         _ranged.AddProjectileToPool(gameObject);
     }
     public void SetRanged(Ranged ranged)

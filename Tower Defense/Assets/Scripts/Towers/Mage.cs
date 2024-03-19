@@ -8,7 +8,7 @@ public class Mage : Ranged, IFire
 
     public void Fire(Transform projectile,Transform target)
     {
-      
+        ani.SetTrigger("Attack");
     }
 
     public void UpdateFiring(Transform projectile, Transform target)
