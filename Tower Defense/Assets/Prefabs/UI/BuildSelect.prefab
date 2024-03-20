@@ -2349,7 +2349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3742966048809091313
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2711,7 +2711,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6390309366667811060
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3517,6 +3517,13 @@ MonoBehaviour:
   buildPanel: {fileID: 6937885846212336216}
   fullUpgradePanel: {fileID: 2659677238760677470}
   timeToBuildSilder: {fileID: 5679447150311328861}
+  initialMagicBuildingTextPrice: {fileID: 7197765939721920981}
+  initialCannonBuildingTextPrice: {fileID: 7487316099139422860}
+  initialBarrackBuildingTextPrice: {fileID: 133615309101443860}
+  initialArcherBuildingTextPrice: {fileID: 3900795315005906272}
+  upgradePriceText: {fileID: 9074934126148616603}
+  sellTextInUpgragePanel: {fileID: 837344643383892007}
+  sellText: {fileID: 8900876022186820682}
 --- !u!1 &9217921276527851798
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbbf60a1de74e249a1df6d09f8e35f7, type: 3}
   m_Name: Mage_lv3
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 40
   attackSpeed: 1
-  range: 20
+  range: 24
   enemiesPerAttack: 1
   projectileSpeed: 55
   maskDetect:
     serializedVersion: 2
     m_Bits: 64
+  price: 216

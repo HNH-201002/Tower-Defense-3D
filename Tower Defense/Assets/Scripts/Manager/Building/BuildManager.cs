@@ -7,7 +7,7 @@ public class BuildManager : MonoBehaviour
 {
     public enum BuildType
     {
-        Canon,
+        Cannon,
         Archer,
         Mage,
         Barrack
@@ -37,7 +37,7 @@ public class BuildManager : MonoBehaviour
     {
         prefabLookup = new Dictionary<BuildType, GameObject[]>
         {
-            { BuildType.Canon, canonPrefabs },
+            { BuildType.Cannon, canonPrefabs },
             { BuildType.Archer, archerPrefabs },
             { BuildType.Mage, magePrefabs },
             { BuildType.Barrack, barrackPrefabs }

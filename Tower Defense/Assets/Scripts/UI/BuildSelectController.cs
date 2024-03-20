@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static BuildManager;
@@ -18,6 +19,13 @@ public class BuildSelectController : MonoBehaviour
     [SerializeField] private GameObject buildPanel;
     [SerializeField] private GameObject fullUpgradePanel;
     [SerializeField] private Slider timeToBuildSilder;
+    [SerializeField] private TMP_Text initialMagicBuildingTextPrice;
+    [SerializeField] private TMP_Text initialCannonBuildingTextPrice;
+    [SerializeField] private TMP_Text initialBarrackBuildingTextPrice;
+    [SerializeField] private TMP_Text initialArcherBuildingTextPrice;
+    [SerializeField] private TMP_Text upgradePriceText;
+    [SerializeField] private TMP_Text sellTextInUpgragePanel;
+    [SerializeField] private TMP_Text sellText;
 
     private GameObject buildPoint;
 
@@ -32,6 +40,7 @@ public class BuildSelectController : MonoBehaviour
     public void SetId(int id) => _id = id;
 
     private bool _isProcessing;
+    
     private void Start()
     {
         mainCamera = Camera.main;
@@ -39,6 +48,10 @@ public class BuildSelectController : MonoBehaviour
         _currentBuildLevel = 0;
         timeToBuildSilder.gameObject.SetActive(false);
         lastCameraRotation = mainCamera.transform.rotation;
+        initialMagicBuildingTextPrice.text = GoldManager.Instance.GetTowerPriceInfo(BuildType.Mage,0).ToString();
+        initialCannonBuildingTextPrice.text = GoldManager.Instance.GetTowerPriceInfo(BuildType.Cannon, 0).ToString();
+        initialArcherBuildingTextPrice.text = GoldManager.Instance.GetTowerPriceInfo(BuildType.Archer, 0).ToString();
+        initialBarrackBuildingTextPrice.text = GoldManager.Instance.GetTowerPriceInfo(BuildType.Barrack, 0).ToString();
     }
     private void Update()
     {
@@ -52,32 +65,43 @@ public class BuildSelectController : MonoBehaviour
     public void BuyDefenseTower() 
     {
         _buildType = BuildType.Barrack;
-        ToggleBuildPoint(false);
-        StartCoroutine(BuildTimer());
+        if (GoldManager.Instance.BuyTown(BuildType.Barrack, 0))
+        {
+            ToggleBuildPoint(false);
+            StartCoroutine(BuildTimer());
+        }
     }
     public void BuyMageTower()
     {
         _buildType = BuildType.Mage;
-        ToggleBuildPoint(false);
-        StartCoroutine(BuildTimer());
+        if(GoldManager.Instance.BuyTown(BuildType.Mage, 0))
+        {
+            ToggleBuildPoint(false);
+            StartCoroutine(BuildTimer());
+        }
     }
 
     public void BuyArcherTower()
     {
         _buildType = BuildType.Archer;
-        ToggleBuildPoint(false);
-        StartCoroutine(BuildTimer());
+        if(GoldManager.Instance.BuyTown(BuildType.Archer, 0))
+        {
+            ToggleBuildPoint(false);
+            StartCoroutine(BuildTimer());
+        }
     }
 
     public void BuyCanonTower()
     {
-        _buildType = BuildType.Canon;
-        ToggleBuildPoint(false);
-        StartCoroutine(BuildTimer());
+        _buildType = BuildType.Cannon;
+        if(GoldManager.Instance.BuyTown(BuildType.Cannon, 0))
+        {
+            ToggleBuildPoint(false);
+            StartCoroutine(BuildTimer());
+        }
     }
     private void BuyTower(BuildType buildType)
     {
-
         OnBuiltTower?.Invoke(buildType, _currentBuildLevel, _id);
         if (_currentBuildLevel % 2 == 0)
         {
@@ -108,6 +132,8 @@ public class BuildSelectController : MonoBehaviour
         timeToBuildSilder.value = 0;
         timeToBuildSilder.gameObject.SetActive(false);
         BuyTower(_buildType);
+        sellTextInUpgragePanel.text = GoldManager.Instance.TotalPrice(_buildType,_currentBuildLevel).ToString();
+        upgradePriceText.text = GoldManager.Instance.GetTowerPriceInfo(_buildType, _currentBuildLevel).ToString();
         _isProcessing = false;
     }
 
@@ -115,6 +141,7 @@ public class BuildSelectController : MonoBehaviour
     public void SellTower()
     {
         OnTowerSold?.Invoke(_buildType, _currentBuildLevel - 1, _id); //store in Pooling
+        GoldManager.Instance.SellTower(_buildType , _currentBuildLevel);
         ResetTower();
     }
     private void ResetTower()
@@ -125,10 +152,14 @@ public class BuildSelectController : MonoBehaviour
     }
     public void Upgrade()
     {
-        StartCoroutine(BuildTimer());
+        if (GoldManager.Instance.BuyTown(_buildType , _currentBuildLevel))
+        {
+            StartCoroutine(BuildTimer());
+        }
     }
     public void ShowFullUpgradePanel()
     {
+        sellText.text = GoldManager.Instance.TotalPrice(_buildType, _currentBuildLevel).ToString();
         TogglePanels(false, false, true);
     }
 

@@ -9,6 +9,7 @@ public class TowerSAO : ScriptableObject
     [SerializeField] private int enemiesPerAttack;
     [SerializeField] private float projectileSpeed;
     [SerializeField] private LayerMask maskDetect;
+    [SerializeField] private int price;
 
     public float Damage { get { return damage; } }
 
@@ -21,4 +22,7 @@ public class TowerSAO : ScriptableObject
     public float ProjectileSpeed { get { return projectileSpeed; } }
 
     public LayerMask Mask { get { return maskDetect; } }
+
+    public int Price { get { return price; } }
+
 }
