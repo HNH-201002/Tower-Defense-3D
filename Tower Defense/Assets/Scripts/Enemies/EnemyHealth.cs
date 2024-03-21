@@ -7,19 +7,28 @@ using static EnemySAO;
 public class EnemyHealth : HealthBase
 {
     [HideInInspector] public EnemyWaveSpawnManager EnemyWaveSpawnManager;
-    [SerializeField] private EnemySAO data;
+    private EnemyStateController enemyStateController;
     private TypeEnemy _typeEnemy;
+    private string name;
+    private void Awake()
+    { 
+        enemyStateController = GetComponent<EnemyStateController>();
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
+    }
     private void Start()
     {
         base.Start();
         _uiHealth.gameObject.SetActive(false);
-        _typeEnemy = data.GetTypeEnemy();
+        _typeEnemy = enemyStateController.GetTypeEnemy();
     }
     protected override float GetHealthData()
     {
-        return data.Health();
+        return enemyStateController.Health;
     }
-
+    protected override float GetArmorData()
+    {
+        return enemyStateController.Armor;
+    }
     protected override void AddPool(GameObject gameObject)
     {
         EnemyWaveSpawnManager.DeactivateAndAddToPool(_typeEnemy, this.gameObject);
@@ -27,6 +36,15 @@ public class EnemyHealth : HealthBase
 
     public override void Death()
     {
-        GetComponent<EnemyStateController>().hasDied = true;
+        if (enemyStateController.hasDied) return;
+        gameObject.layer = LayerMask.NameToLayer("DeadEnemy");
+        GoldManager.Instance.AddGold(enemyStateController.Bounty);
+        enemyStateController.hasDied = true;
+        EnemyWaveSpawnManager.Instance.OnEnemyDeath();
+    }
+    private void OnEnable()
+    {
+        base.OnEnable();
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
 }

@@ -8,6 +8,7 @@ public class Barrack : Tower
     [SerializeField] private Transform origin;
     [SerializeField] private GameObject soldierPrefab;
     [SerializeField] private int amountOfSoldier;
+    [SerializeField] private SoldierSAO soldierSAO;
 
     private Queue<SoldierStateController> soldiersWaitForAttack;
     private Dictionary<GameObject, SoldierStateController> assignedTargets;
@@ -56,6 +57,7 @@ public class Barrack : Tower
         {
             soldier = Instantiate(soldierPrefab, origin.position, Quaternion.identity);
             SoldierStateController soldierComponent = soldier.GetComponent<SoldierStateController>();
+            soldierComponent.SetData(soldierSAO);
             soldierComponent._origin = origin;
             soldier.GetComponent<SoldierHealth>().OnSoldierDied += RespawnSolider;
             soldierComponent.OnEnemyDied += AddtoEnemiesWaitAttack;
@@ -84,7 +86,7 @@ public class Barrack : Tower
     }
     IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(soldierSAO.Respawn);
         GameObject soldier = GetSoldierFromPool();
         SoldierStateController soldierComponent = soldier.GetComponent<SoldierStateController>();
         soldiersWaitForAttack.Enqueue(soldierComponent);

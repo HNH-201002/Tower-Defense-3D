@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [Serializable]
@@ -25,20 +26,69 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     [SerializeField] private float _delayBetweenEnemies; 
     [SerializeField] private Transform _spawnLocation;
     private Dictionary<EnemySAO.TypeEnemy, List<GameObject>> storedGameObject = new Dictionary<EnemySAO.TypeEnemy, List<GameObject>>();
-    private void Start()
+    [SerializeField] private TMP_Text waveText;
+    [SerializeField] private TMP_Text timerWaveText;
+
+    private int enemiesRemainingToDie;
+
+    private static EnemyWaveSpawnManager _instance;
+    public static EnemyWaveSpawnManager Instance
     {
+        get { return _instance; }
+        set { _instance = value; }
+    }
+    private void Awake()
+    {
+        UpdateWaveText(0, _timeBetweenOtherWave);
         StartCoroutine(SpawnWaves());
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
     }
 
     private IEnumerator SpawnWaves()
     {
-        foreach (var waveInfo in _data)
+        enemiesRemainingToDie = 0;
+        for (int i = 0; i < _data.Length; i++)
         {
-            yield return StartCoroutine(SpawnWave(waveInfo));
-            yield return new WaitForSeconds(_timeBetweenOtherWave);
+            UpdateWaveText(i + 1, _timeBetweenOtherWave);
+            StartCoroutine(CountdownWaveTimer(_timeBetweenOtherWave));
+            yield return StartCoroutine(SpawnWave(_data[i]));
+            if (i < _data.Length - 1)
+            {
+                yield return new WaitForSeconds(_timeBetweenOtherWave);
+            }
         }
+
+        yield return new WaitUntil(() => enemiesRemainingToDie <= 0);
+        yield return new WaitForSeconds(2f);
+        GameManager.Instance.Win();
     }
 
+    private void UpdateWaveText(int currentWaveIndex,float time)
+    {
+        waveText.text = $"Wave {currentWaveIndex}/{_data.Length}";
+        timerWaveText.text = time.ToString();
+    }
+    private IEnumerator CountdownWaveTimer(float time)
+    {
+        float remainingTime = time;
+        while (remainingTime > 0)
+        {
+            timerWaveText.text = Mathf.CeilToInt(remainingTime).ToString();
+
+            yield return new WaitForSeconds(1f);
+
+            remainingTime -= 1f;
+        }
+
+        timerWaveText.text = "0";
+    }
     private IEnumerator SpawnWave(WaveSpawnInfo waveInfo)
     {
         foreach (var enemyInfo in waveInfo.enemySpawnDataStructure)
@@ -57,6 +107,8 @@ public class EnemyWaveSpawnManager : MonoBehaviour
                     enemyGO.transform.rotation = Quaternion.identity;
                     enemyGO.SetActive(true);
                 }
+
+                enemiesRemainingToDie++;
                 Enemy enemyScript = enemyGO.GetComponent<Enemy>();
                 enemyScript.EnemyWaveSpawnManager = this;
                 EnemyHealth enemyHealth = enemyGO.GetComponent<EnemyHealth>();  //singleton
@@ -98,5 +150,9 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     {
         enemy.SetActive(false);
         AddEnemyToStored(typeEnemy, enemy);
+    }
+    public void OnEnemyDeath()
+    {
+        enemiesRemainingToDie--;
     }
 }

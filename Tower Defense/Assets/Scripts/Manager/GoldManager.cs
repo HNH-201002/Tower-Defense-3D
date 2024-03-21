@@ -91,6 +91,11 @@ public class GoldManager : MonoBehaviour
         }
         return 0;
     }
+    public void AddGold(int gold)
+    {
+        this.gold += gold;
+        UpdateGoldText();
+    }
     private void UpdateGoldText()
     {
         goldText.text = gold.ToString();

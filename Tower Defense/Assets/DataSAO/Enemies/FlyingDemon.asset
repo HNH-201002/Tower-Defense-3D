@@ -18,7 +18,9 @@ MonoBehaviour:
   _damage: 10
   _attackSpeed: 0
   _attackRange: 10
-  _enemyLayerMask:
+  armor: 0
+  bounty: 5
+  _enemyType: 1
+  _soldierLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  _enemyType: 1

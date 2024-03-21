@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using static EnemySAO;
 
 public class EnemyStateController : MonoBehaviour
 {
@@ -16,7 +17,10 @@ public class EnemyStateController : MonoBehaviour
     private float _attackSpeed;
     private float _health;
     private float _rangeAttack;
-    private LayerMask _layerMask;
+    private float _armor;
+    private int _bounty;
+    private TypeEnemy _enemyType;
+    private LayerMask _soldierLayerMask;
     [HideInInspector] public Transform _origin;
 
     public float Damage { get { return _damage; } }
@@ -29,7 +33,12 @@ public class EnemyStateController : MonoBehaviour
 
     public float Health { get { return _health; } }
 
-    public LayerMask LayerEnemy { get { return _layerMask; } }
+    public float Armor { get { return _armor; } }
+
+    public int Bounty { get { return _bounty; } }
+    public LayerMask SoldierLayerMask { get { return _soldierLayerMask; } }
+
+    public TypeEnemy GetTypeEnemy() => _enemyType;
 
     [HideInInspector] public EnemyWalkState _walkState;
     [HideInInspector] public EnemyCombatState _combatState;
@@ -49,12 +58,6 @@ public class EnemyStateController : MonoBehaviour
     public static event Action<EnemyStateController> OnSoldierDied;
     private void Awake()
     {
-        _speed = data.Speed();
-        _damage = data.Damage();
-        _attackSpeed = data.AttackSpeed();
-        _health = data.Health();
-        _rangeAttack = data.AttackRange();
-        _layerMask = data.LayerMask();
         _walkState = new EnemyWalkState();
         _combatState = new EnemyCombatState();
         _enemy = GetComponent<Enemy>();
@@ -63,6 +66,15 @@ public class EnemyStateController : MonoBehaviour
 
     private void Start()
     {
+        _enemyType = data.GetTypeEnemy();
+        _armor = data.Armor;
+        _speed = data.Speed();
+        _damage = data.Damage();
+        _attackSpeed = data.AttackSpeed();
+        _health = data.Health();
+        _rangeAttack = data.AttackRange();
+        _soldierLayerMask = data.SoldierLayerMask();
+        _bounty = data.Bounty;
         ChangeState(_walkState);
     }
     void Update()

@@ -8,6 +8,9 @@ public class SoldierSAO : ScriptableObject
     [SerializeField] private float speed;
     [SerializeField] private float range;
     [SerializeField] private float health;
+    [Tooltip("Percentage %")]
+    [SerializeField] private float armor;
+    [SerializeField] private float respawn;
 
     public float Damage { get { return damage; } }
 
@@ -18,5 +21,8 @@ public class SoldierSAO : ScriptableObject
     public float Range { get { return range; } }
 
     public float Health { get { return health; } }
+
+    public float Armor { get { return armor; } }
+    public float Respawn { get { return respawn; } }
 
 }

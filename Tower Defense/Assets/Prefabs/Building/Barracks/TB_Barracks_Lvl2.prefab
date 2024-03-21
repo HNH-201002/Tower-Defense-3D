@@ -307,3 +307,4 @@ MonoBehaviour:
   soldierPrefab: {fileID: 7041232337404801095, guid: eafbdb4104ca0d540bb43c8ad5a11ad6,
     type: 3}
   amountOfSoldier: 3
+  soldierSAO: {fileID: 11400000, guid: c93ef025023cdda4b8146dea957503e8, type: 2}

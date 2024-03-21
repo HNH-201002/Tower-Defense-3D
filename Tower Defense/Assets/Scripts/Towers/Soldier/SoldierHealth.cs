@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using static EnemySAO;
 
 public class SoldierHealth : HealthBase
 {
+    private SoldierStateController SoldierStateController;
     public event Action<GameObject, GameObject> OnSoldierDied;
-    private bool isRestorationStopped = false; // Renamed 'check' to 'isRestorationStopped'
+    private bool isRestorationStopped = false;
 
+    private void Awake()
+    {
+        SoldierStateController = GetComponent<SoldierStateController>();
+    }
     private void Start()
     {
         base.Start();
@@ -16,19 +20,21 @@ public class SoldierHealth : HealthBase
 
     protected override void AddPool(GameObject gameObject)
     {
-        OnSoldierDied?.Invoke(gameObject, GetComponent<SoldierStateController>()._enemiesDetected);
+        OnSoldierDied?.Invoke(gameObject, SoldierStateController._enemiesDetected);
     }
 
     protected override float GetHealthData()
     {
-        return 200;
+        return SoldierStateController.Health;
     }
-
+    protected override float GetArmorData()
+    {
+        return SoldierStateController.Armor;
+    }
     public override void Death()
     {
         _uiHealth.gameObject.SetActive(true);
-        SoldierStateController soldierStateController = GetComponent<SoldierStateController>();
-        soldierStateController.hasDied = true;
+        SoldierStateController.hasDied = true;
     }
 
     private void StopRestoreHealth()
@@ -65,16 +71,14 @@ public class SoldierHealth : HealthBase
     private void OnEnable()
     {
         base.OnEnable();
-        SoldierStateController soldierStateController = GetComponent<SoldierStateController>();
-        soldierStateController.OnEnemyDied += RestoreHealth;
-        soldierStateController.OnNewEnemy += StopRestoreHealth;
+        SoldierStateController.OnEnemyDied += RestoreHealth;
+        SoldierStateController.OnNewEnemy += StopRestoreHealth;
     }
 
     private void OnDisable()
     {
         base.OnDisable();
-        SoldierStateController soldierStateController = GetComponent<SoldierStateController>();
-        soldierStateController.OnEnemyDied -= RestoreHealth;
-        soldierStateController.OnNewEnemy -= StopRestoreHealth;
+        SoldierStateController.OnEnemyDied -= RestoreHealth;
+        SoldierStateController.OnNewEnemy -= StopRestoreHealth;
     }
 }

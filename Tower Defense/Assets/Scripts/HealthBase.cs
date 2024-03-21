@@ -6,15 +6,19 @@ public abstract class HealthBase : MonoBehaviour
 {
     [SerializeField] protected Slider _uiHealth;
     protected float _health;
+    protected float _armor;
     private Camera _camera;
     private Quaternion _previousRotationCamera;
-    public bool HasDied;
+    [HideInInspector] public bool HasDied;
     protected abstract float GetHealthData();
-    protected abstract void AddPool(GameObject gameObject);
 
+    protected abstract float GetArmorData();
+    protected abstract void AddPool(GameObject gameObject);
+   
     protected void Start()
     {
         _health = GetHealthData();
+        _armor = GetArmorData();
         Initialize();
     }
 
@@ -30,6 +34,10 @@ public abstract class HealthBase : MonoBehaviour
 
     private void Update()
     {
+        if (_camera == null)
+        {
+            _camera = Camera.main;
+        }
         if (_camera.transform.rotation != _previousRotationCamera)
         {
             if (!_uiHealth.gameObject.activeInHierarchy) return;
@@ -61,7 +69,8 @@ public abstract class HealthBase : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _uiHealth.gameObject.SetActive(true);
-        _health -= damage;
+        float damageMultiplier = _armor != 0 ? _armor / 100 : 1;
+        _health -= damage * damageMultiplier;
         _uiHealth.value = _health;
         if (_health <= 0)
         {

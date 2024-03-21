@@ -24,8 +24,8 @@ public abstract class Enemy : MonoBehaviour
     }
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
         _NextPointToMove = _pointToMove.Dequeue();
+        rb = GetComponent<Rigidbody>();
     }
     public abstract void Attack();
 
@@ -76,6 +76,9 @@ public abstract class Enemy : MonoBehaviour
         if (collision.collider.CompareTag("End"))
         {
             EnemyWaveSpawnManager.DeactivateAndAddToPool(_typeEnemy,gameObject);
+            GoldManager.Instance.AddGold(enemyData.Bounty);
+            GameManager.Instance.DecreaseHealth();
+            EnemyWaveSpawnManager.Instance.OnEnemyDeath();
         }
     }
 }

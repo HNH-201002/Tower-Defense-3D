@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bda28c7f5650ca4b873afb88b1d91db, type: 3}
   m_Name: Soldier_LV4
   m_EditorClassIdentifier: 
-  damage: 5
-  attackSpeed: 2
+  damage: 15
+  attackSpeed: 1
   speed: 5
   range: 20
-  health: 10
+  health: 240
+  armor: 50
+  respawn: 14

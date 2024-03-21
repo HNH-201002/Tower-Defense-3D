@@ -16,8 +16,12 @@ public class EnemySAO : ScriptableObject
     [SerializeField] private float _damage;
     [SerializeField] private float _attackSpeed;
     [SerializeField] private float _attackRange;
-    [SerializeField] private LayerMask _enemyLayerMask;
+    [Tooltip("Percentage %")]
+    [SerializeField] private float armor;
+    [SerializeField] private int bounty;
     [SerializeField] private TypeEnemy _enemyType;
+    [Space(2)]
+    [SerializeField] private LayerMask _soldierLayerMask;
     public GameObject GetPrefab() => _prefab;
     public float Health() => _health;
     public float Speed() => _speed;
@@ -28,6 +32,10 @@ public class EnemySAO : ScriptableObject
 
     public float AttackRange() => _attackRange;
 
-    public LayerMask LayerMask() => _enemyLayerMask;
+    public float Armor { get { return armor; } }
+
+    public int Bounty { get { return bounty; } }
+
+    public LayerMask SoldierLayerMask() => _soldierLayerMask;
     public TypeEnemy GetTypeEnemy() => _enemyType;
 }

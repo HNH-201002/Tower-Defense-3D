@@ -8,12 +8,12 @@ public class SoldierStateController : MonoBehaviour
 
     private readonly int _hitAniHash = Animator.StringToHash("hit");
 
-    [SerializeField] private SoldierSAO data;
     private float _speed;
     private float _damage;
     private float _attackSpeed;
     private float _health;
     private float _rangeAttack;
+    private float _armor;
     [HideInInspector] public Transform _origin;
     [HideInInspector] public GameObject _enemiesDetected;
 
@@ -27,6 +27,8 @@ public class SoldierStateController : MonoBehaviour
 
     public float Health { get { return _health; } }
 
+    public float Armor { get { return _armor; } }
+
 
     [HideInInspector]  public SoldierOrderedState _orderedState;
     [HideInInspector]  public SoldierIdleState _idleState;
@@ -35,13 +37,11 @@ public class SoldierStateController : MonoBehaviour
     public bool hasDied;
     public event Action<SoldierStateController,GameObject> OnEnemyDied;
     public event Action OnNewEnemy;
+
+    private SoldierSAO _data;
+    public void SetData(SoldierSAO data) => _data = data;
     private void Awake()
     {
-        _speed = data.Speed;
-        _damage = data.Damage;
-        _attackSpeed = data.AttackSpeed;
-        _health = data.Health;
-        _rangeAttack = data.Range;
         _idleState = new SoldierIdleState();
         _attackState = new SoldierAttackState();
         _orderedState = new SoldierOrderedState();
@@ -50,6 +50,12 @@ public class SoldierStateController : MonoBehaviour
 
     private void Start()
     {
+        _speed = _data.Speed;
+        _damage = _data.Damage;
+        _attackSpeed = _data.AttackSpeed;
+        _health = _data.Health;
+        _rangeAttack = _data.Range;
+        _armor = _data.Armor;
         ChangeState(_idleState);
     }
     void Update()
