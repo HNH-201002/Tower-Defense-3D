@@ -10,9 +10,11 @@ public class Archer : Ranged, IFire
     private Vector3 lastPosition;
     private Vector3 lastLastPosition;
     public bool ContinueFiring { get { return false; } }
-
+    private const string SFX_HIT = "Release_Arrow";
+    private const string SFX_RELEASE = "Arrow_Hit";
     public void Fire(Transform projectile, Transform target)
     {
+        SoundManager.Instance.PlaySound(SFX_HIT);
         lastPosition = projectile.position;
         lastLastPosition = lastPosition;
         if(characterPrefab.Length > 1)
@@ -54,5 +56,14 @@ public class Archer : Ranged, IFire
         directionToTarget.y = 0; 
         Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
         character.rotation = Quaternion.Slerp(character.rotation, targetRotation, turnSpeed * Time.deltaTime);
+    }
+
+    protected override string SetSfxRelease()
+    {
+        return SFX_RELEASE;
+    }
+    protected override string SetSfxHit()
+    {
+        return SFX_HIT;
     }
 }

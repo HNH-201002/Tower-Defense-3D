@@ -4,10 +4,11 @@ public class SoldierAttackState : ISoldierState
 {
     private SoldierStateController _controller;
     GameObject _target;
+    private const string SFX_COMBAT = "Combat_Barrack";
     public void OnEnter(SoldierStateController state)
     {
         _controller = state;
-        _target = state._enemiesDetected.gameObject;
+        _target = state._enemiesDetected.gameObject;     
     }
 
     public void UpdateState(SoldierStateController state)

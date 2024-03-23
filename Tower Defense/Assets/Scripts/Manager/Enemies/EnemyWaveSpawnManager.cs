@@ -37,6 +37,8 @@ public class EnemyWaveSpawnManager : MonoBehaviour
         get { return _instance; }
         set { _instance = value; }
     }
+    private const string SFX_WAVE_NEXT_WAVE = "NextWave";
+    private const string SFX_WAVE_WAVE_COMING = "WaveComing";
     private void Awake()
     {
         UpdateWaveText(0, _timeBetweenOtherWave);
@@ -56,12 +58,13 @@ public class EnemyWaveSpawnManager : MonoBehaviour
         enemiesRemainingToDie = 0;
         for (int i = 0; i < _data.Length; i++)
         {
+            SoundManager.Instance.PlaySound(SFX_WAVE_WAVE_COMING);
             UpdateWaveText(i + 1, _timeBetweenOtherWave);
             StartCoroutine(CountdownWaveTimer(_timeBetweenOtherWave));
             yield return StartCoroutine(SpawnWave(_data[i]));
             if (i < _data.Length - 1)
             {
-                yield return new WaitForSeconds(_timeBetweenOtherWave);
+                yield return new WaitForSeconds(_timeBetweenOtherWave);    
             }
         }
 
@@ -117,6 +120,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
                 yield return new WaitForSeconds(_delayBetweenEnemies);
             }
         }
+        SoundManager.Instance.PlaySound(SFX_WAVE_NEXT_WAVE);
     }
 
     public GameObject GetPooledEnemy(EnemySAO.TypeEnemy typeEnemy)

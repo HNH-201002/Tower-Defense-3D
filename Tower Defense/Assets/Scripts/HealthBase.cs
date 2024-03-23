@@ -9,14 +9,19 @@ public abstract class HealthBase : MonoBehaviour
     protected float _armor;
     private Camera _camera;
     private Quaternion _previousRotationCamera;
+
+    private string _sfxDead;
     [HideInInspector] public bool HasDied;
     protected abstract float GetHealthData();
 
     protected abstract float GetArmorData();
+
+    protected abstract string GetSfxDeadName();
     protected abstract void AddPool(GameObject gameObject);
    
     protected void Start()
     {
+        _sfxDead = GetSfxDeadName();
         _health = GetHealthData();
         _armor = GetArmorData();
         Initialize();
@@ -49,6 +54,7 @@ public abstract class HealthBase : MonoBehaviour
     public abstract void Death();
     private IEnumerator OnDeath()
     {
+        SoundManager.Instance.PlaySound(_sfxDead);
         _uiHealth.gameObject.SetActive(false);
         GetComponent<Animator>().SetBool("Died",true);
         Death();

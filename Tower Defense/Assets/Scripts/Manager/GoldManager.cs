@@ -23,7 +23,6 @@ public class GoldManager : MonoBehaviour
         get { return _instance; }
         set { _instance = value; }
     }
-
     private void Awake()
     {
         if (_instance != null && _instance != this)

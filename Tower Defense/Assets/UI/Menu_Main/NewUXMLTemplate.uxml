@@ -1,0 +1,13 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement name="Main" style="flex-grow: 1; flex-shrink: 0; justify-content: flex-end; align-items: flex-start; flex-direction: column; flex-wrap: nowrap; position: relative; visibility: visible; display: flex; flex-basis: 33%;">
+        <engine:VisualElement style="flex-grow: 1; position: absolute; top: -2px; right: -2px; left: 0; bottom: 490px; align-items: flex-start; -unity-background-image-tint-color: rgb(253, 38, 38); background-color: rgba(0, 255, 52, 0.12);">
+            <engine:Label text="Label" parse-escape-sequences="false" style="-unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=b470a69cd638b2c478d9162afa49b6d9&amp;type=3#NotInter-Regular&quot;); height: 91px; width: 751px;" />
+        </engine:VisualElement>
+        <engine:VisualElement style="flex-grow: 1; position: absolute; top: 97px; right: 1px; left: 0; bottom: 270px; flex-direction: column-reverse; background-color: rgba(30, 255, 222, 0.33);">
+            <engine:Label text="Label" />
+        </engine:VisualElement>
+        <engine:VisualElement style="flex-grow: 1; position: absolute; top: 326px; right: 1px; left: 0; bottom: 0; flex-direction: column-reverse; background-color: rgba(220, 101, 101, 0.53);">
+            <engine:Label text="Label" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

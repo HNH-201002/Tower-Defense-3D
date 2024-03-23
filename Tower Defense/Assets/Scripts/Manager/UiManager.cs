@@ -7,6 +7,7 @@ public class UiManager : MonoBehaviour
 {
     [SerializeField] private GameObject uiInGame;
     bool toggle;
+    private const string SFX_CLICK = "Click";
     private void Start()
     {
         uiInGame.SetActive(false);
@@ -14,6 +15,7 @@ public class UiManager : MonoBehaviour
     //event
     public void PauseButton()
     {
+        SoundManager.Instance.PlaySound(SFX_CLICK);
         toggle = !toggle;
         uiInGame.SetActive(toggle);
         if (uiInGame.gameObject.activeInHierarchy)
@@ -25,16 +27,35 @@ public class UiManager : MonoBehaviour
             Time.timeScale = 1;
         }
     }
+    public void ContinueButton()
+    {
+        SoundManager.Instance.PlaySound(SFX_CLICK);
+        int index = SceneManager.GetActiveScene().buildIndex + 1;
+        if (index > SceneManager.sceneCount)
+        {
+            StartCoroutine(LoadAsyncScene(0));
+        }
+        else
+        {
+            StartCoroutine(LoadAsyncScene(index));
+        }
+    }
+    public void QuitButton()
+    {
+        SoundManager.Instance.PlaySound(SFX_CLICK);
+        StartCoroutine(LoadAsyncScene(0));
+    }
     public void RestartButton()
     {
-        StartCoroutine(LoadYourAsyncScene());
+        SoundManager.Instance.PlaySound(SFX_CLICK);
+        int index = SceneManager.GetActiveScene().buildIndex;
+        StartCoroutine(LoadAsyncScene(index));
     }
 
-    IEnumerator LoadYourAsyncScene()
+    IEnumerator LoadAsyncScene(int index)
     {
         Time.timeScale = 1;
-        string sceneName = SceneManager.GetActiveScene().name;
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(index);
 
         while (!asyncLoad.isDone)
         {

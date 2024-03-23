@@ -12,6 +12,7 @@ public class BuildingPoint : MonoBehaviour
     private bool hasAlreadyChosen;
     private static Camera mainCamera;
     private float _timeBuilding;
+    private const string SFX_TOWER_CLICK = "TowerClick";
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class BuildingPoint : MonoBehaviour
 
     public void Interact()
     {
+        SoundManager.Instance.PlaySound(SFX_TOWER_CLICK);
         if (hasAlreadyChosen)
         {
             buildSelectManager.HandleOldAndNewPanel(_id);

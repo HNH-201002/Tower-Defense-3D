@@ -27,6 +27,7 @@ public class BuildSelectController : MonoBehaviour
     [SerializeField] private TMP_Text sellTextInUpgragePanel;
     [SerializeField] private TMP_Text sellText;
 
+
     private GameObject buildPoint;
 
 
@@ -40,7 +41,11 @@ public class BuildSelectController : MonoBehaviour
     public void SetId(int id) => _id = id;
 
     private bool _isProcessing;
-    
+
+
+    private const string SFX_BUILD_TOWER = "TowerBuild";
+
+    private const string SFX_SELL_TOWER = "TowerSell";
     private void Start()
     {
         mainCamera = Camera.main;
@@ -120,6 +125,7 @@ public class BuildSelectController : MonoBehaviour
     private IEnumerator BuildTimer()
     {
         BuyTower(_buildType);
+        SoundManager.Instance.PlaySound(SFX_BUILD_TOWER);
         timeToBuildSilder.gameObject.SetActive(true);
         float elapsedTime = 0f;
         _isProcessing = true;
@@ -140,6 +146,7 @@ public class BuildSelectController : MonoBehaviour
 
     public void SellTower()
     {
+        SoundManager.Instance.PlaySound(SFX_SELL_TOWER);
         OnTowerSold?.Invoke(_buildType, _currentBuildLevel - 1, _id); //store in Pooling
         GoldManager.Instance.SellTower(_buildType , _currentBuildLevel);
         ResetTower();

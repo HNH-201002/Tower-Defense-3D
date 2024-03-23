@@ -5,7 +5,8 @@ public class Canon : Ranged, IFire
     [Range(20.0f, 75.0f)] public float LaunchAngle;
 
     public bool ContinueFiring { get { return false; } }
-
+    private const string SFX_RELEASE = "Release_Cannon";
+    private const string SFX_HIT = "Hit_Cannon";
     public void Fire(Transform projectile, Transform target)
     {
         Vector3 projectileXZPos = new Vector3(projectile.position.x, transform.position.y, projectile.position.z);
@@ -32,5 +33,13 @@ public class Canon : Ranged, IFire
     public void UpdateFiring(Transform projectile, Transform target)
     {
        
+    }
+    protected override string SetSfxRelease()
+    {
+        return SFX_RELEASE;
+    }
+    protected override string SetSfxHit()
+    {
+        return SFX_HIT;
     }
 }

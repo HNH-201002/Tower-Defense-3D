@@ -10,8 +10,10 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Transform flashPrefab;
     [SerializeField] private Transform hitPrefab;
     [SerializeField] private GameObject projectileModelPrefab;
-    public void Initialize(Transform target,IFire fire,float damage)
+    private string sfx_Hit;
+    public void Initialize(Transform target,IFire fire,float damage,string sfx_Hit)
     {
+        this.sfx_Hit = sfx_Hit;
         _damage = damage;
         this.target = target;
         _fire = fire;
@@ -54,6 +56,7 @@ public class Projectile : MonoBehaviour
         {
             if (other.GetComponent<EnemyHealth>())
             {
+                SoundManager.Instance.PlaySound(sfx_Hit);
                 other.GetComponent<EnemyHealth>().TakeDamage(_damage);
             }
             if (hitPrefab != null) hitPrefab.gameObject.SetActive(true);

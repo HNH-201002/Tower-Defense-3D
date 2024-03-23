@@ -7,7 +7,7 @@ public class SoldierHealth : HealthBase
     private SoldierStateController SoldierStateController;
     public event Action<GameObject, GameObject> OnSoldierDied;
     private bool isRestorationStopped = false;
-
+    private const string SFX_DEAD = "Soldier_Dead";
     private void Awake()
     {
         SoldierStateController = GetComponent<SoldierStateController>();
@@ -23,6 +23,10 @@ public class SoldierHealth : HealthBase
         OnSoldierDied?.Invoke(gameObject, SoldierStateController._enemiesDetected);
     }
 
+    protected override string GetSfxDeadName()
+    {
+        return SFX_DEAD;
+    }
     protected override float GetHealthData()
     {
         return SoldierStateController.Health;

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,11 +11,15 @@ public class GameManager : MonoBehaviour
         get { return _instance; }
         set { _instance = value; }
     }
-    [SerializeField] private int _health;
+    [SerializeField] private int health;
     [SerializeField] private TMP_Text _healthText;
     [SerializeField] GameObject[] starSprites; // win star
-    [SerializeField] private TMP_Text titleText;
-    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject winPanel;
+    [SerializeField] private GameObject defeatPanel;
+    private int _health;
+
+    private const string SFX_VICTORY = "Victory";
+    private const string SFX_LOOSE_HEALTH = "LooseLife";
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -26,8 +30,10 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
+        _health = health;
         UpdateHealthText();
-        gameOverPanel.SetActive(false);
+        winPanel.SetActive(false);
+        defeatPanel.SetActive(false);
     }
     public void DecreaseHealth()
     {
@@ -42,6 +48,7 @@ public class GameManager : MonoBehaviour
         {
             UpdateHealthText();
         }
+        SoundManager.Instance.PlaySound(SFX_LOOSE_HEALTH);
     }
     private void UpdateHealthText()
     {
@@ -49,6 +56,7 @@ public class GameManager : MonoBehaviour
     }
     public void Win()
     {
+        SoundManager.Instance.PlaySound(SFX_VICTORY);
         int starsAwarded;
 
         if (_health >= 18)
@@ -67,8 +75,10 @@ public class GameManager : MonoBehaviour
         {
             starSprites[i].SetActive(true);
         }
-        titleText.text = "VICTORY";
-        gameOverPanel.SetActive(true);
+        winPanel.SetActive(true);
+        MapData data = new MapData(SceneManager.GetActiveScene().buildIndex, starsAwarded,_health,health,true);
+        SaveManager.SaveData(data);
+        Time.timeScale = 0;
     }
     private IEnumerator DelayedDefeated(float delay)
     {
@@ -77,7 +87,7 @@ public class GameManager : MonoBehaviour
     }
     public void Defeated()
     {
-        titleText.text = "Defeated";
-        gameOverPanel.SetActive(true);
+        defeatPanel.SetActive(true);
+        Time.timeScale = 0;
     }
 }

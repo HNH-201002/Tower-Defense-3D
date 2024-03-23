@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using static EnemySAO;
 
 public class EnemyHealth : HealthBase
@@ -9,7 +6,7 @@ public class EnemyHealth : HealthBase
     [HideInInspector] public EnemyWaveSpawnManager EnemyWaveSpawnManager;
     private EnemyStateController enemyStateController;
     private TypeEnemy _typeEnemy;
-    private string name;
+    private const string SFX_DEAD = "Enemy_Dead";
     private void Awake()
     { 
         enemyStateController = GetComponent<EnemyStateController>();
@@ -29,6 +26,10 @@ public class EnemyHealth : HealthBase
     {
         return enemyStateController.Armor;
     }
+    protected override string GetSfxDeadName()
+    {
+        return SFX_DEAD;
+    }
     protected override void AddPool(GameObject gameObject)
     {
         EnemyWaveSpawnManager.DeactivateAndAddToPool(_typeEnemy, this.gameObject);
@@ -47,4 +48,5 @@ public class EnemyHealth : HealthBase
         base.OnEnable();
         gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
+
 }
