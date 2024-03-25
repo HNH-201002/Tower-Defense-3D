@@ -1,7 +1,5 @@
-﻿using TMPro;
-using UnityEngine;
-using UnityEngine.TextCore.Text;
-using static UnityEngine.GraphicsBuffer;
+﻿using UnityEngine;
+
 
 public class Archer : Ranged, IFire
 {
@@ -30,14 +28,14 @@ public class Archer : Ranged, IFire
 
     public void UpdateFiring(Transform projectile, Transform target)
     {
-        projectile.position = Vector3.MoveTowards(projectile.position, target.position, _projectileSpeed * Time.deltaTime);
-        Vector3 arrowDirection = lastPosition - lastLastPosition;
+        Vector3 arrowDirection = -(lastPosition - lastLastPosition);
+        arrowDirection.y = 0;
 
         if (arrowDirection != Vector3.zero)
         {
-            projectile.up = -arrowDirection.normalized;
+            projectile.up = arrowDirection.normalized;
         }
-
+        projectile.position = Vector3.MoveTowards(projectile.position, target.position, _projectileSpeed * Time.deltaTime);
         lastLastPosition = lastPosition;
         lastPosition = projectile.position;
         if (characterPrefab.Length > 1)
@@ -53,7 +51,7 @@ public class Archer : Ranged, IFire
     private void RotateTowardsTarget(Transform character, Vector3 targetPosition)
     {
         Vector3 directionToTarget = -(targetPosition - character.position).normalized;
-        directionToTarget.y = 0; 
+        directionToTarget.y = 0;
         Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
         character.rotation = Quaternion.Slerp(character.rotation, targetRotation, turnSpeed * Time.deltaTime);
     }

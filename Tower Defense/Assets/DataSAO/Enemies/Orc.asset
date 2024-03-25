@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a88288822c7434f9434348f1d9f588, type: 3}
+  m_Name: Orc
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 232703598245571869, guid: ede4b4f6dd92ab94092c386c1977adc6, type: 3}
+  _health: 800
+  _speed: 4
+  _damage: 50
+  _attackSpeed: 0
+  _attackRange: 10
+  armor: 0
+  bounty: 100
+  _enemyType: 6
+  _soldierLayerMask:
+    serializedVersion: 2
+    m_Bits: 256

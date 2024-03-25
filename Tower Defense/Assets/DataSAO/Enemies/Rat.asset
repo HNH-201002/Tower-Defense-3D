@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a88288822c7434f9434348f1d9f588, type: 3}
+  m_Name: Rat
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 2338458424684572029, guid: 443216b6d2a414040959a0ef99c2f92d, type: 3}
+  _health: 35
+  _speed: 10
+  _damage: 1
+  _attackSpeed: 0
+  _attackRange: 10
+  armor: 0
+  bounty: 5
+  _enemyType: 4
+  _soldierLayerMask:
+    serializedVersion: 2
+    m_Bits: 256

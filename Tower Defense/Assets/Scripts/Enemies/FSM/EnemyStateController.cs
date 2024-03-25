@@ -9,8 +9,6 @@ public class EnemyStateController : MonoBehaviour
 {
     IEnemyState currentState;
 
-    private readonly int _hitAniHash = Animator.StringToHash("hit");
-
     [SerializeField] private EnemySAO data;
     private float _speed;
     private float _damage;
@@ -104,6 +102,7 @@ public class EnemyStateController : MonoBehaviour
     }
     public void OnEnable()
     {
+        ChangeState(_walkState);
         hasDied = false;
     }
 }

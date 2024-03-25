@@ -113,10 +113,11 @@ public class EnemyWaveSpawnManager : MonoBehaviour
 
                 enemiesRemainingToDie++;
                 Enemy enemyScript = enemyGO.GetComponent<Enemy>();
-                enemyScript.EnemyWaveSpawnManager = this;
-                EnemyHealth enemyHealth = enemyGO.GetComponent<EnemyHealth>();  //singleton
-                enemyHealth.EnemyWaveSpawnManager = this;
                 enemyScript.SetPatrol(enemyInfo.movePoints.PatrolPoints());
+                enemyScript.EnemyWaveSpawnManager = this;
+                EnemyHealth enemyHealth = enemyGO.GetComponent<EnemyHealth>(); 
+                enemyHealth.EnemyWaveSpawnManager = this;
+ 
                 yield return new WaitForSeconds(_delayBetweenEnemies);
             }
         }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SoldierAttackState : ISoldierState
@@ -5,6 +6,7 @@ public class SoldierAttackState : ISoldierState
     private SoldierStateController _controller;
     GameObject _target;
     private const string SFX_COMBAT = "Combat_Barrack";
+    
     public void OnEnter(SoldierStateController state)
     {
         _controller = state;
@@ -14,6 +16,10 @@ public class SoldierAttackState : ISoldierState
     public void UpdateState(SoldierStateController state)
     {
         if (state.hasDied) return;
+        if (!_target.activeInHierarchy)
+        {
+            state.EnemyDied();
+        }
         Vector3 targetDirection = _target.transform.position - state.transform.position;
 
         if (Vector3.Distance(state.transform.position, _target.transform.position) > 4.5f)

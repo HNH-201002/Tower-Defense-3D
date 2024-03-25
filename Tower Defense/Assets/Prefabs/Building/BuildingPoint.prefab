@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a126514d2dfbd5240b2608897309b649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBuilding: 0.1
+  timeBuilding: 1
   canonPrefabs:
   - {fileID: 6902884990377869111, guid: 8d851e53e50b1ea438ffa13cdff13270, type: 3}
   - {fileID: 7026358836872514127, guid: cdb185f1ce9418b49a8b128239a02b44, type: 3}
@@ -142,6 +142,11 @@ PrefabInstance:
       propertyPath: buildSelectManager
       value: 
       objectReference: {fileID: 4034699036770424197}
+    - target: {fileID: 7280004164999704218, guid: dc80a295e57addd4286c8cab26ae82cf,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7555840705478374246, guid: dc80a295e57addd4286c8cab26ae82cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -244,6 +249,11 @@ PrefabInstance:
       propertyPath: buildSelectManager
       value: 
       objectReference: {fileID: 4034699036770424197}
+    - target: {fileID: 7280004164999704218, guid: dc80a295e57addd4286c8cab26ae82cf,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7555840705478374246, guid: dc80a295e57addd4286c8cab26ae82cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -346,6 +356,11 @@ PrefabInstance:
       propertyPath: buildSelectManager
       value: 
       objectReference: {fileID: 4034699036770424197}
+    - target: {fileID: 7280004164999704218, guid: dc80a295e57addd4286c8cab26ae82cf,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7555840705478374246, guid: dc80a295e57addd4286c8cab26ae82cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -448,6 +463,11 @@ PrefabInstance:
       propertyPath: buildSelectManager
       value: 
       objectReference: {fileID: 4034699036770424197}
+    - target: {fileID: 7280004164999704218, guid: dc80a295e57addd4286c8cab26ae82cf,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7555840705478374246, guid: dc80a295e57addd4286c8cab26ae82cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -550,6 +570,11 @@ PrefabInstance:
       propertyPath: buildSelectManager
       value: 
       objectReference: {fileID: 4034699036770424197}
+    - target: {fileID: 7280004164999704218, guid: dc80a295e57addd4286c8cab26ae82cf,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7555840705478374246, guid: dc80a295e57addd4286c8cab26ae82cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -652,6 +677,11 @@ PrefabInstance:
       propertyPath: buildSelectManager
       value: 
       objectReference: {fileID: 4034699036770424197}
+    - target: {fileID: 7280004164999704218, guid: dc80a295e57addd4286c8cab26ae82cf,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7555840705478374246, guid: dc80a295e57addd4286c8cab26ae82cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -754,6 +784,11 @@ PrefabInstance:
       propertyPath: buildSelectManager
       value: 
       objectReference: {fileID: 4034699036770424197}
+    - target: {fileID: 7280004164999704218, guid: dc80a295e57addd4286c8cab26ae82cf,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7555840705478374246, guid: dc80a295e57addd4286c8cab26ae82cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -856,6 +891,11 @@ PrefabInstance:
       propertyPath: buildSelectManager
       value: 
       objectReference: {fileID: 4034699036770424197}
+    - target: {fileID: 7280004164999704218, guid: dc80a295e57addd4286c8cab26ae82cf,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7555840705478374246, guid: dc80a295e57addd4286c8cab26ae82cf,
         type: 3}
       propertyPath: m_LocalPosition.x

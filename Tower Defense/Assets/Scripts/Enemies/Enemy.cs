@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
@@ -24,8 +25,8 @@ public abstract class Enemy : MonoBehaviour
     }
     private void Start()
     {
-        _NextPointToMove = _pointToMove.Dequeue();
         rb = GetComponent<Rigidbody>();
+        _NextPointToMove = _pointToMove.Dequeue();
     }
     public abstract void Attack();
 
@@ -36,8 +37,15 @@ public abstract class Enemy : MonoBehaviour
     public virtual void Walk()
     {
         if (_pointToMove == null || _pointToMove.Count < 0) return;
+        if (_NextPointToMove == null) 
+        { 
+            _NextPointToMove = _pointToMove.Dequeue();
+        }
+        Vector3 targetPosition = new Vector3(_NextPointToMove.transform.position.x,
+                                             transform.position.y, 
+                                             _NextPointToMove.transform.position.z);
 
-        if (Vector3.Distance(_NextPointToMove.transform.position, transform.position) <= 0.03f)
+        if (Vector3.Distance(targetPosition, transform.position) <= 0.003f)
         {
             if (_pointToMove.Count > 0)
             {
@@ -47,9 +55,9 @@ public abstract class Enemy : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position
-                                                    , _NextPointToMove.transform.position
-                                                    , speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position,
+                                                     targetPosition,
+                                                     speed * Time.deltaTime);
             ani.SetFloat(_speedAniHash, speed * Time.deltaTime);
             SetNextPoint(_NextPointToMove);
         }
@@ -70,7 +78,7 @@ public abstract class Enemy : MonoBehaviour
         }
     }
     public void SetPatrol(List<Transform> patrolPoints) => _pointToMove = new Queue<Transform>(patrolPoints);
-
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("End"))
@@ -80,5 +88,11 @@ public abstract class Enemy : MonoBehaviour
             GameManager.Instance.DecreaseHealth();
             EnemyWaveSpawnManager.Instance.OnEnemyDeath();
         }
+    }
+
+   
+    private void OnDisable()
+    {
+        _NextPointToMove = null;
     }
 }

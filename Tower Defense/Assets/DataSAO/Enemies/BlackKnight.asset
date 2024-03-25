@@ -19,7 +19,7 @@ MonoBehaviour:
   _attackSpeed: 5
   _attackRange: 10
   armor: 0
-  bounty: 10
+  bounty: 100
   _enemyType: 0
   _soldierLayerMask:
     serializedVersion: 2

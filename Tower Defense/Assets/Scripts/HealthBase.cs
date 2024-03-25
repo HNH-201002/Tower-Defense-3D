@@ -75,7 +75,7 @@ public abstract class HealthBase : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _uiHealth.gameObject.SetActive(true);
-        float damageMultiplier = _armor != 0 ? _armor / 100 : 1;
+        float damageMultiplier = _armor != 0 ? (100 - _armor) / 100 : 1;
         _health -= damage * damageMultiplier;
         _uiHealth.value = _health;
         if (_health <= 0)

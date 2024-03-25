@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Lizard
   m_EditorClassIdentifier: 
   _prefab: {fileID: 8520806767560728094, guid: d353f967cb20a4b49995f39bade0fc9c, type: 3}
-  _health: 60
+  _health: 100
   _speed: 5
-  _damage: 10
+  _damage: 4
   _attackSpeed: 0
   _attackRange: 10
-  armor: 0
-  bounty: 2
+  armor: 10
+  bounty: 8
   _enemyType: 2
   _soldierLayerMask:
     serializedVersion: 2

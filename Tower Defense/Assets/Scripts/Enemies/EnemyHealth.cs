@@ -46,6 +46,7 @@ public class EnemyHealth : HealthBase
     private void OnEnable()
     {
         base.OnEnable();
+        _uiHealth.gameObject.SetActive(false);
         gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
 

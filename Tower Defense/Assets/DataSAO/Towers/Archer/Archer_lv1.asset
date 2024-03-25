@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 4
   attackSpeed: 0.8
-  range: 20
+  range: 30
   enemiesPerAttack: 1
   projectileSpeed: 55
   maskDetect:

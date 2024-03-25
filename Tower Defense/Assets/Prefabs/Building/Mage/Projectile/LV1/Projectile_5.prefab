@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3894845667156182543}
   - component: {fileID: 332043022893631198}
   - component: {fileID: 7008246070568130738}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShoclWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4913,7 +4913,7 @@ GameObject:
   - component: {fileID: 3645687164855907735}
   - component: {fileID: 5172773993045408396}
   - component: {fileID: 3754557485239846522}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flash_lv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9825,7 +9825,7 @@ GameObject:
   - component: {fileID: 3446611902736541187}
   - component: {fileID: 3566005146024218167}
   - component: {fileID: 7078117926418262586}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14736,7 +14736,7 @@ GameObject:
   - component: {fileID: 7840341307429907802}
   - component: {fileID: 8172410445598550909}
   - component: {fileID: 6890998886870371561}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BorderLightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19580,7 +19580,7 @@ GameObject:
   - component: {fileID: 3784982583396115601}
   - component: {fileID: 1453279176619706847}
   - component: {fileID: 1894552360026540961}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Borders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24482,7 +24482,7 @@ GameObject:
   - component: {fileID: 6428747840718323923}
   - component: {fileID: 4788272637831772766}
   - component: {fileID: 2665301097674327214}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Darkness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29384,7 +29384,7 @@ GameObject:
   - component: {fileID: 4741334325700655303}
   - component: {fileID: 4156296749060365200}
   - component: {fileID: 7629246699880664136}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34305,7 +34305,7 @@ GameObject:
   - component: {fileID: 8597305407232100699}
   - component: {fileID: 673949406915858179}
   - component: {fileID: 3458908266219196934}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Projectile_5
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -34391,7 +34391,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.4
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6976274091025526558
 GameObject:
@@ -34404,7 +34404,7 @@ GameObject:
   - component: {fileID: 711392344394132038}
   - component: {fileID: 728511948255826179}
   - component: {fileID: 2394365826751260723}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39308,7 +39308,7 @@ GameObject:
   - component: {fileID: 7550748111886843039}
   - component: {fileID: 8613071092897289918}
   - component: {fileID: 4653183679148749550}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mage_LV1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44297,7 +44297,7 @@ GameObject:
   - component: {fileID: 5302324095477841246}
   - component: {fileID: 9130932082677041230}
   - component: {fileID: 2036361662201727871}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShoclWaveDark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49199,7 +49199,7 @@ GameObject:
   - component: {fileID: 791181080098385948}
   - component: {fileID: 3201857834608618458}
   - component: {fileID: 6465883363364074322}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hit 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

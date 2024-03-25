@@ -8,7 +8,11 @@ public class EnemySAO : ScriptableObject
         BlackKnight,
         FlyingDemon,
         Lizard,
-        WereWolf
+        WereWolf,
+        Rat,
+        Turtle,
+        Orc,
+        Skeleton
     }
     [SerializeField] private GameObject _prefab;
     [SerializeField] private float _health;

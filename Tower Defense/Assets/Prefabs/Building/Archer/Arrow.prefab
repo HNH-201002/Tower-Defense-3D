@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5657817433871874247}
   - component: {fileID: 4586216242298576694}
   - component: {fileID: 5434809751317363910}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Arrow
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7833996117421392103}
@@ -98,8 +98,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2677568, y: 2.3870358, z: 0.2165662}
-  m_Center: {x: -0.03685887, y: -0.9900174, z: 0.00942193}
+  m_Size: {x: 0.2677568, y: 2.3787682, z: 0.2165662}
+  m_Center: {x: -0.03685887, y: -1.2734355, z: 0.00942193}
 --- !u!1001 &542610491926935145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112,6 +112,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TB_ArcherTower_Arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294136278661936577, guid: 5e2eb2dc98be66d40b360fe92e9e3346,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7723757647258023566, guid: 5e2eb2dc98be66d40b360fe92e9e3346,
         type: 3}

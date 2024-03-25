@@ -9,7 +9,16 @@ EditorBuildSettings:
     path: Assets/Scenes/MapSelect.unity
     guid: f98c6002fdcf55341869ccb9fc416b66
   - enabled: 1
-    path: Assets/Scenes/M_1.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/M_2.unity
+    guid: 6df93fa06bd1eb3408fa155d114d11b7
+  - enabled: 1
+    path: Assets/Scenes/M_3.unity
+    guid: 68df28eff6da8f740a2eb278091aa0aa
+  - enabled: 1
+    path: Assets/Scenes/M_4.unity
+    guid: 90354d493a7f1cc4c86456f9e1507c4e
+  - enabled: 1
+    path: Assets/Scenes/M_5.unity
+    guid: 2c0948a75e6073c4c9607a1c671f7018
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

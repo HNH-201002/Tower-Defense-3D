@@ -76,10 +76,11 @@ public class GameManager : MonoBehaviour
             starSprites[i].SetActive(true);
         }
         winPanel.SetActive(true);
-        MapData data = new MapData(SceneManager.GetActiveScene().buildIndex, starsAwarded,_health,health,true);
+        MapData data = new MapData(SceneManager.GetActiveScene().name, starsAwarded,_health,health,true);
         SaveManager.SaveData(data);
         Time.timeScale = 0;
     }
+
     private IEnumerator DelayedDefeated(float delay)
     {
         yield return new WaitForSeconds(delay);

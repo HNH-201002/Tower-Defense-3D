@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7decf71d60cb2fe438b4d9a0a160a517, type: 3}
+  m_Name: SceneLoaderManager
+  m_EditorClassIdentifier: 
+  loadingScreenMode: 1
+  sceneList:
+  - SceneName: LoadExample
+    SceneAsset: {fileID: 102900000, guid: 511f544c1ae32b3448425de6b65acff2, type: 3}
+    DisplayName: Scene Example Name
+    Description: Prompta noluisse verterem sed eu, mundi graece eum in. Vis ut alia
+      euismod tincidunt, per no ubique euismod. Indoctum qualisque vituperata an
+      his. Timeam feugait id mel, vis in iuvaret fabulas. Quis veri diceret vix in,
+      numquam praesent elaboraret eum ne.
+    SkipType: 0
+    LoadingType: 1
+    FakeLoadingTime: 7
+    Backgrounds:
+    - {fileID: 21300000, guid: 2650407d6311724489f3256696e75bb0, type: 3}
+    - {fileID: 21300000, guid: af238b260179c884b93aa3248768f90b, type: 3}
+    - {fileID: 21300000, guid: d693da8ebc165674b9509bab6391e358, type: 3}
+  - SceneName: Example 11
+    SceneAsset: {fileID: 102900000, guid: c994af733cc3682459a0e9ca8b30fc3c, type: 3}
+    DisplayName: Scene Example Name1
+    Description: Prompta noluisse verterem sed eu, mundi graece eum in. Vis ut alia
+      euismod tincidunt, per no ubique euismod. Indoctum qualisque vituperata an
+      his. Timeam feugait id mel, vis in iuvaret fabulas. Quis veri diceret vix in,
+      numquam praesent elaboraret eum ne.
+    SkipType: 0
+    LoadingType: 1
+    FakeLoadingTime: 7
+    Backgrounds:
+    - {fileID: 21300000, guid: 2650407d6311724489f3256696e75bb0, type: 3}
+    - {fileID: 21300000, guid: af238b260179c884b93aa3248768f90b, type: 3}
+    - {fileID: 21300000, guid: d693da8ebc165674b9509bab6391e358, type: 3}
+  - SceneName: MapSelect
+    SceneAsset: {fileID: 102900000, guid: f98c6002fdcf55341869ccb9fc416b66, type: 3}
+    DisplayName: MapSelect
+    Description: 
+    SkipType: 3
+    LoadingType: 0
+    FakeLoadingTime: 2
+    Backgrounds: []
+  - SceneName: M_1
+    SceneAsset: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
+    DisplayName: M_1
+    Description: 
+    SkipType: 3
+    LoadingType: 0
+    FakeLoadingTime: 2
+    Backgrounds: []
+  - SceneName: M_2
+    SceneAsset: {fileID: 102900000, guid: 6df93fa06bd1eb3408fa155d114d11b7, type: 3}
+    DisplayName: M_2
+    Description: 
+    SkipType: 3
+    LoadingType: 0
+    FakeLoadingTime: 2
+    Backgrounds: []
+  - SceneName: M_3
+    SceneAsset: {fileID: 102900000, guid: 68df28eff6da8f740a2eb278091aa0aa, type: 3}
+    DisplayName: M_3
+    Description: 
+    SkipType: 3
+    LoadingType: 0
+    FakeLoadingTime: 2
+    Backgrounds: []
+  - SceneName: M_4
+    SceneAsset: {fileID: 102900000, guid: 90354d493a7f1cc4c86456f9e1507c4e, type: 3}
+    DisplayName: M_4
+    Description: 
+    SkipType: 3
+    LoadingType: 0
+    FakeLoadingTime: 2
+    Backgrounds: []
+  - SceneName: M_5
+    SceneAsset: {fileID: 102900000, guid: 2c0948a75e6073c4c9607a1c671f7018, type: 3}
+    DisplayName: M_5
+    Description: 
+    SkipType: 3
+    LoadingType: 0
+    FakeLoadingTime: 2
+    Backgrounds: []
+  tipsList:
+  - Create beautiful loading screens for improved your game
+  - Easy to use and implement
+  - 'Remember that have 3 diferent styles for select. '
+  - Create as many tips as you need
+  - Improved the look of your game with awasome backgrounds.
+  - Good backgrounds sounds increase the motivation of players.
+  buildSettingsAsFallback: 1
+  useSynchronousAsFallback: 1

@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.IO.LowLevel.Unsafe;
-using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+﻿using UnityEngine;
+
 
 public class EnemyCombatState : IEnemyState
 {
-    
+    private const float AttackRangeSqr = 4.5f * 4.5f;
+    private const float RotationSpeed = 20f;
+    private readonly int ANI_ATTACK = Animator.StringToHash("Attack");
     public void OnEnter(EnemyStateController state)
     {
         state.ani.SetBool("Combat", true);
@@ -24,9 +23,9 @@ public class EnemyCombatState : IEnemyState
         Vector3 targetDirection = state.soldier.transform.position - state.transform.position;
         targetDirection.y = 0; 
 
-        if (targetDirection.sqrMagnitude < 4.5f * 4.5f) 
+        if (targetDirection.sqrMagnitude < AttackRangeSqr) 
         {
-            state.ani.SetTrigger("Attack");
+            state.ani.SetTrigger(ANI_ATTACK);
         }
 
         if (targetDirection != Vector3.zero) 
@@ -34,14 +33,14 @@ public class EnemyCombatState : IEnemyState
             Quaternion lookRotation = Quaternion.LookRotation(targetDirection.normalized);
             state.gameObject.transform.rotation = Quaternion.Slerp(state.gameObject.transform.rotation,
                                                                    lookRotation,
-                                                                   Time.deltaTime * 20);
+                                                                   Time.deltaTime * RotationSpeed);
         }
     }
     public void OnHurt(EnemyStateController state)
     {
 
     }
-    public void OnExit(EnemyStateController state, IEnemyState state1)
+    public void OnExit(EnemyStateController state, IEnemyState nextState)
     {
 
     }

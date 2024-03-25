@@ -36,6 +36,7 @@ public class Projectile : MonoBehaviour
             }
             _fire.Fire(gameObject.transform, target);
         }
+        StartCoroutine(DelayBeforeDisapper(hitPrefab.gameObject,4));
     }
 
     private void Update()

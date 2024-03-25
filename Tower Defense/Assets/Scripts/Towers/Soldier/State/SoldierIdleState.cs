@@ -7,14 +7,14 @@ public class SoldierIdleState : ISoldierState
     public void OnEnter(SoldierStateController state)
     {
         _controller = state;
-        state.ani.SetBool("Attack", false);
         state.ani.SetBool("Chase", true);
+        state.ani.SetBool("Attack", false);
     }
 
     public void UpdateState(SoldierStateController state)
     {
+        state.ani.SetBool("Attack", false);
         if (state.hasDied) return;
-        if (!state._origin) return;
         if (state._enemiesDetected)
         {
             state.ChangeState(state._attackState);

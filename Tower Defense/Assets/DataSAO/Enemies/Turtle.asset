@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a88288822c7434f9434348f1d9f588, type: 3}
+  m_Name: Turtle
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 5465495862131000925, guid: 081f6cec0731f95419898e137e4e33a5, type: 3}
+  _health: 25
+  _speed: 5
+  _damage: 2
+  _attackSpeed: 10
+  _attackRange: 10
+  armor: 0
+  bounty: 5
+  _enemyType: 5
+  _soldierLayerMask:
+    serializedVersion: 2
+    m_Bits: 256

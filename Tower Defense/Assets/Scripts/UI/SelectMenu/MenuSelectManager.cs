@@ -1,36 +1,42 @@
-using UnityEditor;
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class MenuSelectManager : MonoBehaviour
 {
     [SerializeField] private Transform _content;
     [SerializeField] private GameObject _selectMapPrefab;
+    [SerializeField] private List<string> sceneNames;
+    private bool isPreviousMapUnclock = false;
     void Start()
     {
         GameData gameData = SaveManager.LoadData();
-        int count = 0;
-        for (int i = 0; i < EditorBuildSettings.scenes.Length; i++)
+
+        for (int i = 0; i < sceneNames.Count; i++)
         {
-            EditorBuildSettingsScene scene = EditorBuildSettings.scenes[i];
-            if (scene.enabled && scene.path.Contains("/M_"))
+            string sceneName = sceneNames[i];
+            GameObject mapSelectGO = Instantiate(_selectMapPrefab);
+            mapSelectGO.transform.SetParent(_content, false);
+            MenuMapElement menuMapElement = mapSelectGO.GetComponent<MenuMapElement>();
+            menuMapElement.nameIndexMapText.text = (i + 1).ToString();
+
+            if (gameData.maps.TryGetValue(sceneName, out MapData data))
             {
-                GameObject mapSelectGO = Instantiate(_selectMapPrefab);
-                mapSelectGO.transform.SetParent(_content, false);
-                MenuMapElement menuMapElement = mapSelectGO.GetComponent<MenuMapElement>();
-                if (count == 0)
+                menuMapElement.SetData(data.starCount, data.health, data.totalHealth, i, data.isUnlocked);
+                isPreviousMapUnclock = data.isUnlocked; 
+            }
+            else
+            {
+                bool unlockStatus = (i == 0 || isPreviousMapUnclock);
+                menuMapElement.SetData(0, 0, 20, i, unlockStatus);
+                if (!unlockStatus)
                 {
                     menuMapElement.SetLockPanel();
                 }
-                if (gameData.maps.TryGetValue(i,out MapData data))
-                {
-                    if (data.isUnlocked)
-                    {
-                        menuMapElement.SetData(data.starCount,data.health,data.totalHealth,i);
-                    }
-                }
-                menuMapElement.SetScene(i);
-                count++;
             }
+
+            menuMapElement.SetScene(sceneName);
         }
     }
 

@@ -82,11 +82,17 @@ public class SoldierStateController : MonoBehaviour
         enemyHealth.TakeDamage(_damage);
         if (enemyHealth.HasDied)
         {
-            OnEnemyDied?.Invoke(gameObject.GetComponent<SoldierStateController>(),_enemiesDetected);
-            _enemiesDetected = null;
-            ChangeState(_idleState);
+            EnemyDied();
         }
     }
+
+    public void EnemyDied()
+    {
+        OnEnemyDied?.Invoke(gameObject.GetComponent<SoldierStateController>(), _enemiesDetected);
+        _enemiesDetected = null;
+        ChangeState(_idleState);
+    }
+
     private void OnEnable()
     {
         hasDied = false;
@@ -97,9 +103,5 @@ public class SoldierStateController : MonoBehaviour
         _enemiesDetected = null;
         hasDied = false;
         ChangeState(_idleState);
-    }
-    private void OnDisable()
-    {
-        _enemiesDetected = null;
     }
 }

@@ -1,19 +1,21 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class MapData
 {
-    public int mapNumber;
+    public string mapName;
     public int starCount;
     public int health;
     public int totalHealth;
     public bool isUnlocked;
 
-    public MapData(int number, int stars, int health,int totalHealth, bool unlocked)
+    public MapData(string number, int stars, int health,int totalHealth, bool unlocked)
     {
-        mapNumber = number;
+        mapName = number;
         starCount = stars;
         isUnlocked = unlocked;
         this.health = health;
@@ -27,10 +29,10 @@ public class MapDataListWrapper
 }
 public class GameData
 {
-    public Dictionary<int, MapData> maps;
+    public Dictionary<string, MapData> maps;
     public GameData()
     {
-        maps = new Dictionary<int, MapData>();
+        maps = new Dictionary<string, MapData>();
     }
 }
 public class SaveManager : MonoBehaviour
@@ -56,13 +58,16 @@ public class SaveManager : MonoBehaviour
     {
         GameData gameData = LoadData();
         string path = Application.persistentDataPath + "/saveFile.json";
-        if (gameData.maps.ContainsKey(data.mapNumber))
+        if (gameData.maps.TryGetValue(data.mapName, out MapData value))
         {
-            gameData.maps[data.mapNumber] = data;
+            if (value.starCount < data.starCount || value.health < data.health)
+            {
+                gameData.maps[data.mapName] = data;
+            }
         }
         else
         {
-            gameData.maps.Add(data.mapNumber, data);
+            gameData.maps.Add(data.mapName, data);
         }
 
         MapDataListWrapper wrapper = new MapDataListWrapper
@@ -76,7 +81,6 @@ public class SaveManager : MonoBehaviour
         file.Directory.Create();
 
         File.WriteAllText(path, json);
-        Debug.Log("Data saved to " + path);
     }
     public static GameData LoadData()
     {
@@ -88,7 +92,7 @@ public class SaveManager : MonoBehaviour
             GameData gameData = new GameData();
             foreach (var mapData in wrapper.mapDataList)
             {
-                gameData.maps.Add(mapData.mapNumber, mapData);
+                gameData.maps.Add(mapData.mapName, mapData);
             }
             return gameData;
         }

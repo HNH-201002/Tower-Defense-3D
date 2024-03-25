@@ -7,17 +7,16 @@ using UnityEngine.UI;
 
 public class MenuMapElement : MonoBehaviour
 {
-    [SerializeField] private GameObject lockPanel;
     [SerializeField] private Button button;
     [SerializeField] private GameObject[] star;
     [SerializeField] private TMP_Text healthText;
-    [SerializeField] private TMP_Text nameIndexMapText;
+    public TMP_Text nameIndexMapText;
     private const string SFX_CLICK = "Click";
     private void Awake()
     {
-        lockPanel.SetActive(true);
+        button.interactable = false;
     }
-    public void SetData(int stars,int health,int totalHealth,int index)
+    public void SetData(int stars,int health,int totalHealth,int index,bool isUnlock)
     {
         for (int i = 0; i < stars; i++)
         {
@@ -25,27 +24,26 @@ public class MenuMapElement : MonoBehaviour
         }
         healthText.text = $"{health}/{totalHealth}";
         nameIndexMapText.text = index.ToString();
+        if (isUnlock)
+        {
+            SetLockPanel();
+        }
     }
     public void SetLockPanel()
     {
-        lockPanel.SetActive(false);
+        button.interactable = true;
     }
-    public void SetScene(int index)
+    public void SetScene(string name)
     {
-        if (index < 0 || index >= SceneManager.sceneCountInBuildSettings)
-        {
-            Debug.LogError("Scene index out of range: " + index);
-            return;
-        }
         if (button != null)
         {
-            button.onClick.AddListener(()=> StartCoroutine(LoadSceneAsync(index)));
+            button.onClick.AddListener(()=> StartCoroutine(LoadSceneAsync(name)));
         }
     }
-    IEnumerator LoadSceneAsync(int index)
+    IEnumerator LoadSceneAsync(string name)
     {
         SoundManager.Instance.PlaySound(SFX_CLICK);
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(index);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(name);
 
         while (!asyncLoad.isDone)
         {
