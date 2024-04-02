@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbbf60a1de74e249a1df6d09f8e35f7, type: 3}
   m_Name: Mage_lv1
   m_EditorClassIdentifier: 
-  damage: 9
+  damage: 12
   attackSpeed: 1.5
   range: 15
   enemiesPerAttack: 1

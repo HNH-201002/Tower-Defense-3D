@@ -28,8 +28,8 @@ public class BuildManager : MonoBehaviour
     private void Awake()
     {
         InitializePrefabLookup();
-        Initialize();
         InitializeBuildingPoints();
+        Initialize();
     }
 
     private void InitializePrefabLookup()
@@ -50,13 +50,13 @@ public class BuildManager : MonoBehaviour
 
         foreach (BuildType type in Enum.GetValues(typeof(BuildType)))
         {
-            objectPools[type] = new Queue<GameObject>[canonPrefabs.Length];
+            objectPools[type] = new Queue<GameObject>[buildingPoints.Length];
             currentBuildings[type] = new Dictionary<int, GameObject[]>();
 
-            for (int i = 0; i < canonPrefabs.Length; i++)
+            for (int i = 0; i < buildingPoints.Length;  i++)
             {
                 objectPools[type][i] = new Queue<GameObject>();
-                currentBuildings[type][i] = new GameObject[prefabLookup[type].Length];
+                currentBuildings[type][i] = new GameObject[buildingPoints.Length];
             }
         }
     }

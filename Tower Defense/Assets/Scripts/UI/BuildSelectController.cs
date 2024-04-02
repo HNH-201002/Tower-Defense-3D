@@ -42,7 +42,6 @@ public class BuildSelectController : MonoBehaviour
 
     private bool _isProcessing;
 
-
     private const string SFX_BUILD_TOWER = "TowerBuild";
 
     private const string SFX_SELL_TOWER = "TowerSell";
@@ -148,6 +147,7 @@ public class BuildSelectController : MonoBehaviour
     {
         SoundManager.Instance.PlaySound(SFX_SELL_TOWER);
         OnTowerSold?.Invoke(_buildType, _currentBuildLevel - 1, _id); //store in Pooling
+
         GoldManager.Instance.SellTower(_buildType , _currentBuildLevel);
         ResetTower();
     }

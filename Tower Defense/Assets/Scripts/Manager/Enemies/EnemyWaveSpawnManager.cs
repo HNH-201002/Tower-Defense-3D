@@ -39,6 +39,7 @@ public class EnemyWaveSpawnManager : MonoBehaviour
     }
     private const string SFX_WAVE_NEXT_WAVE = "NextWave";
     private const string SFX_WAVE_WAVE_COMING = "WaveComing";
+
     private void Awake()
     {
         UpdateWaveText(0, _timeBetweenOtherWave);

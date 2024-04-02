@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbbf60a1de74e249a1df6d09f8e35f7, type: 3}
   m_Name: Archer_lv1
   m_EditorClassIdentifier: 
-  damage: 4
-  attackSpeed: 0.8
+  damage: 6
+  attackSpeed: 0.7
   range: 30
   enemiesPerAttack: 1
   projectileSpeed: 55

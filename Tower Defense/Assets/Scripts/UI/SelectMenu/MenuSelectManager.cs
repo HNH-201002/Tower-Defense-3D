@@ -28,12 +28,13 @@ public class MenuSelectManager : MonoBehaviour
             }
             else
             {
-                bool unlockStatus = (i == 0 || isPreviousMapUnclock);
-                menuMapElement.SetData(0, 0, 20, i, unlockStatus);
-                if (!unlockStatus)
+                bool unlockStatus = false;
+                if (i == 0 || isPreviousMapUnclock)
                 {
-                    menuMapElement.SetLockPanel();
+                    unlockStatus = true;
                 }
+                isPreviousMapUnclock = false;
+                menuMapElement.SetData(0, 0, 20, i, unlockStatus);
             }
 
             menuMapElement.SetScene(sceneName);
