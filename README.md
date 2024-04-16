@@ -1,6 +1,6 @@
 # Name:  Tower Defense
 ## Beta Version: 
-## You can try it in here: https://kingdom01.itch.io/tower-defense
+## You can try it in here: https://smackthat.itch.io/tower-defense
 ### Use the Right Mouse Button to rotate camera
 ### Use the Left Mouse Button to interact with Build Point
 ### Use Scroll Wheel to zoom in and out
